@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Instagram - Azzahir</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
 </head>
 <body>
     <div class="hero">
@@ -20,18 +21,72 @@
     </div>
     
     <div class="container">
-        <div class="qr-container">
-            <div class="qr-card">
-                <img src="majelisazzahir_qr.png" alt="QR Code Instagram Azzahir" class="qr-code">
-                <div class="qr-instruction">
-                    <h3><i class="fas fa-qrcode"></i> Cara Menggunakan</h3>
-                    <ol>
-                        <li>Buka aplikasi Instagram di smartphone Anda</li>
-                        <li>Buka kamera dan arahkan ke QR code di atas</li>
-                        <li>Ketika notifikasi muncul, ketuk untuk mengikuti kami</li>
-                    </ol>
-                    <a href="#" class="but"><i class="fab fa-instagram"></i> Kunjungi Instagram Kami</a>
+        <div class="card card-dark" id="instagram-card">
+            <div class="card-header">
+                <h2><i class="fab fa-instagram"></i> Instagram Azzahir</h2>
+            </div>
+            <div class="card-body">
+                <div class="qr-content">
+                    <div class="qr-image-container">
+                        <img src="majelisazzahir_qr.png" alt="QR Code Instagram Azzahir" class="qr-code">
+                        <div class="qr-badge">
+                            <i class="fab fa-instagram"></i> Scan Me
+                        </div>
+                    </div>
+                    <div class="qr-instruction">
+                        <h3><i class="fas fa-qrcode"></i> Cara Mengikuti Kami</h3>
+                        <ol>
+                            <li>Buka aplikasi Instagram di smartphone Anda</li>
+                            <li>Ketuk ikon kamera di pojok kiri atas</li>
+                            <li>Arahkan kamera ke QR code di samping</li>
+                            <li>Ketuk notifikasi yang muncul untuk mengikuti</li>
+                        </ol>
+                        <div class="social-stats">
+                            <div class="stat-item">
+                                <i class="fas fa-users"></i>
+                                <span>10K+ Followers</span>
+                            </div>
+                            <div class="stat-item">
+                                <i class="fas fa-heart"></i>
+                                <span>50K+ Likes</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+            </div>
+            <div class="card-footer">
+                <a href="https://instagram.com/majelisazzahir" class="but" target="_blank">
+                    <i class="fab fa-instagram"></i> Kunjungi Profil
+                </a>
+                <button class="download-btn" onclick="downloadCard('instagram-card')">
+                    <i class="fas fa-download"></i> Download Card
+                </button>
+            </div>
+        </div>
+        
+        <div class="card" id="social-media-card">
+            <div class="card-header">
+                <h2><i class="fas fa-share-alt"></i> Bagikan</h2>
+            </div>
+            <div class="card-body">
+                <p>Bagikan kartu Instagram kami ke media sosial dan dapatkan hadiah spesial!</p>
+                <div class="social-buttons">
+                    <button class="social-btn facebook">
+                        <i class="fab fa-facebook-f"></i> Facebook
+                    </button>
+                    <button class="social-btn twitter">
+                        <i class="fab fa-twitter"></i> Twitter
+                    </button>
+                    <button class="social-btn whatsapp">
+                        <i class="fab fa-whatsapp"></i> WhatsApp
+                    </button>
+                </div>
+            </div>
+            <div class="card-footer">
+                <span><i class="fas fa-hashtag"></i> #AzzahirSholawat</span>
+                <button class="download-btn" onclick="downloadCard('social-media-card')">
+                    <i class="fas fa-download"></i> Download
+                </button>
             </div>
         </div>
     </div>
@@ -39,8 +94,38 @@
     <footer>
         <div class="footer-content">
             <p>&copy; 2025 Album Sholawat Azzahir. Dev: Muhammad Rian Akbar.</p>
+            <div class="footer-links">
+                <a href="#">Kebijakan Privasi</a>
+                <a href="#">Syarat & Ketentuan</a>
+                <a href="#">Kontak Kami</a>
+            </div>
         </div>
     </footer>
-    <script src="script.js"></script>
+    
+    <script>
+        function downloadCard(cardId) {
+            const element = document.getElementById(cardId);
+            const options = {
+                scale: 2,
+                backgroundColor: null,
+                logging: false,
+                allowTaint: true,
+                useCORS: true
+            };
+            
+            html2canvas(element, options).then(canvas => {
+                const link = document.createElement('a');
+                link.download = 'azzahir-' + cardId + '.png';
+                link.href = canvas.toDataURL('image/png');
+                link.click();
+            });
+        }
+        
+        document.querySelectorAll('.social-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                alert('Fitur berbagi akan membagikan card Instagram ke ' + this.textContent.trim());
+            });
+        });
+    </script>
 </body>
 </html>
