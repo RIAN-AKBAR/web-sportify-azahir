@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Album - Azzahir</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
 </head>
 <body>
     <div class="hero">
@@ -20,31 +21,197 @@
     </div>
     
     <div class="container">
-        <div class="section-header">
-            <h2><i class="fas fa-music"></i> Koleksi Album</h2>
-            <p>Klik album untuk mendengarkan di Spotify</p>
+        <div class="card">
+            <div class="card-header">
+                <h2><i class="fas fa-music"></i> Koleksi Album</h2>
+            </div>
+            <div class="card-body">
+                <p class="section-description">Silahkan scan di aplikasi Spotify atau dengarkan langsung dari website kami. Setiap album mengandung makna dan keistimewaan tersendiri.</p>
+                
+                <div class="card-grid">
+                    <div class="card card-album" id="album1">
+                        <div class="card-header">
+                            <h3><i class="fas fa-compact-disc"></i> Cahaya Madinah</h3>
+                        </div>
+                        <div class="card-body">
+                            <img src="foto1.png" class="aa" alt="Cahaya Madinah">
+                            <div class="album-meta">
+                                <span><i class="fas fa-clock"></i> 45 Menit</span>
+                                <span><i class="fas fa-list-ol"></i> 12 Lagu</span>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <a href="#" class="play-button"><i class="fas fa-play"></i> Play</a>
+                            <button class="download-btn" onclick="downloadCard('album1')">
+                                <i class="fas fa-download"></i> Card
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="card card-album" id="album2">
+                        <div class="card-header">
+                            <h3><i class="fas fa-compact-disc"></i> Shalawat Badar</h3>
+                        </div>
+                        <div class="card-body">
+                            <img src="foto2.png" class="aa" alt="Shalawat Badar">
+                            <div class="album-meta">
+                                <span><i class="fas fa-clock"></i> 38 Menit</span>
+                                <span><i class="fas fa-list-ol"></i> 10 Lagu</span>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <a href="#" class="play-button"><i class="fas fa-play"></i> Play</a>
+                            <button class="download-btn" onclick="downloadCard('album2')">
+                                <i class="fas fa-download"></i> Card
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="card card-album" id="album3">
+                        <div class="card-header">
+                            <h3><i class="fas fa-compact-disc"></i> Ya Thoybah</h3>
+                        </div>
+                        <div class="card-body">
+                            <img src="foto3.png" class="aa" alt="Ya Thoybah">
+                            <div class="album-meta">
+                                <span><i class="fas fa-clock"></i> 52 Menit</span>
+                                <span><i class="fas fa-list-ol"></i> 15 Lagu</span>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <a href="#" class="play-button"><i class="fas fa-play"></i> Play</a>
+                            <button class="download-btn" onclick="downloadCard('album3')">
+                                <i class="fas fa-download"></i> Card
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="card card-album" id="album4">
+                        <div class="card-header">
+                            <h3><i class="fas fa-compact-disc"></i> Mawlid Nabi</h3>
+                        </div>
+                        <div class="card-body">
+                            <img src="foto4.png" class="aa" alt="Mawlid Nabi">
+                            <div class="album-meta">
+                                <span><i class="fas fa-clock"></i> 60 Menit</span>
+                                <span><i class="fas fa-list-ol"></i> 8 Lagu</span>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <a href="#" class="play-button"><i class="fas fa-play"></i> Play</a>
+                            <button class="download-btn" onclick="downloadCard('album4')">
+                                <i class="fas fa-download"></i> Card
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         
-        <div class="gallery-container">
-            <!-- Album items will be added dynamically -->
-        </div>
-        
-        <div class="add-album-form">
-            <h2><i class="fas fa-plus-circle"></i> Tambah Album Baru</h2>
-            <form id="albumForm">
-                <input type="text" placeholder="Nama Album" required>
-                <input type="url" placeholder="URL Gambar Album" required>
-                <input type="url" placeholder="Link Spotify Album" required>
-                <button type="submit" class="but"><i class="fas fa-save"></i> Tambah Album</button>
-            </form>
+        <div class="card" id="add-album-card">
+            <div class="card-header">
+                <h2><i class="fas fa-plus-circle"></i> Tambah Album Baru</h2>
+            </div>
+            <div class="card-body">
+                <form id="albumForm" class="album-form">
+                    <div class="form-group">
+                        <label for="albumName"><i class="fas fa-heading"></i> Nama Album</label>
+                        <input type="text" id="albumName" placeholder="Masukkan nama album" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="albumImage"><i class="fas fa-image"></i> URL Gambar Album</label>
+                        <input type="url" id="albumImage" placeholder="Masukkan URL gambar" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="albumDuration"><i class="fas fa-clock"></i> Durasi</label>
+                        <input type="text" id="albumDuration" placeholder="Contoh: 45 Menit">
+                    </div>
+                    <div class="form-group">
+                        <label for="albumTracks"><i class="fas fa-list-ol"></i> Jumlah Lagu</label>
+                        <input type="number" id="albumTracks" placeholder="Contoh: 12">
+                    </div>
+                    <button type="submit" class="submit-btn"><i class="fas fa-save"></i> Tambah Album</button>
+                </form>
+            </div>
         </div>
     </div>
     
     <footer>
         <div class="footer-content">
             <p>&copy; 2025 Album Sholawat Azzahir. Dev: Muhammad Rian Akbar.</p>
+            <div class="footer-links">
+                <a href="#">Kebijakan Privasi</a>
+                <a href="#">Syarat & Ketentuan</a>
+                <a href="#">Kontak Kami</a>
+            </div>
         </div>
     </footer>
-    <script src="script.js"></script>
+    
+    <script>
+        function downloadCard(cardId) {
+            const element = document.getElementById(cardId);
+            const options = {
+                scale: 2,
+                backgroundColor: '#ffffff',
+                logging: false,
+                allowTaint: true,
+                useCORS: true
+            };
+            
+            html2canvas(element, options).then(canvas => {
+                const link = document.createElement('a');
+                link.download = 'azzahir-album-' + cardId + '.png';
+                link.href = canvas.toDataURL('image/png');
+                link.click();
+            });
+        }
+        
+        document.getElementById('albumForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('albumName').value;
+            const image = document.getElementById('albumImage').value;
+            const duration = document.getElementById('albumDuration').value || '0 Menit';
+            const tracks = document.getElementById('albumTracks').value || '0';
+            
+            if (name && image) {
+                const gallery = document.querySelector('.card-grid');
+                const newId = 'album-' + Date.now();
+                
+                const newAlbum = document.createElement('div');
+                newAlbum.className = 'card card-album';
+                newAlbum.id = newId;
+                newAlbum.innerHTML = `
+                    <div class="card-header">
+                        <h3><i class="fas fa-compact-disc"></i> ${name}</h3>
+                    </div>
+                    <div class="card-body">
+                        <img src="${image}" class="aa" alt="${name}">
+                        <div class="album-meta">
+                            <span><i class="fas fa-clock"></i> ${duration}</span>
+                            <span><i class="fas fa-list-ol"></i> ${tracks} Lagu</span>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a href="#" class="play-button"><i class="fas fa-play"></i> Play</a>
+                        <button class="download-btn" onclick="downloadCard('${newId}')">
+                            <i class="fas fa-download"></i> Card
+                        </button>
+                    </div>
+                `;
+                
+                gallery.appendChild(newAlbum);
+                this.reset();
+                
+                newAlbum.style.transform = 'scale(0.5)';
+                newAlbum.style.opacity = '0';
+                setTimeout(() => {
+                    newAlbum.style.transform = 'scale(1)';
+                    newAlbum.style.opacity = '1';
+                    newAlbum.style.transition = 'all 0.5s ease';
+                }, 100);
+            }
+        });
+    </script>
 </body>
 </html>
