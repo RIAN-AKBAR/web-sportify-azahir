@@ -574,7 +574,6 @@ footer {
     opacity: 1;
     text-decoration: underline;
 }
-
 /* ===== RESPONSIVE STYLES ===== */
 @media (min-width: 768px) {
     .hero {
