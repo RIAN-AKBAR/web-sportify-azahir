@@ -1,0 +1,15 @@
+.awal{
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    border-radius: 20px;
+    background-color: aqua;
+}
+.aa{
+    height: 40vh;
+    border-radius: 20px;
+}
+.but{
+    background-color: aqua;
+    border-radius: 40px;
+}
