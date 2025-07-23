@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Album - Azzahir</title>
-    <link rel="stylesheet" href="coba.css">
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
@@ -22,52 +22,11 @@
     <div class="container">
         <div class="section-header">
             <h2><i class="fas fa-music"></i> Koleksi Album</h2>
-            <p>Silahkan scan di aplikasi Spotify</p>
+            <p>Klik album untuk mendengarkan di Spotify</p>
         </div>
         
         <div class="gallery-container">
-            <div class="album-item">
-                <img src="foto 1.png" class="aa" alt="Album 1">
-                <div class="album-overlay">
-                    <h3>Nama Album 1</h3>
-                    <a href="#" class="play-button"><i class="fas fa-play"></i></a>
-                </div>
-            </div>
-            <div class="album-item">
-                <img src="foto 2.png" class="aa" alt="Album 2">
-                <div class="album-overlay">
-                    <h3>Nama Album 2</h3>
-                    <a href="#" class="play-button"><i class="fas fa-play"></i></a>
-                </div>
-            </div>
-            <div class="album-item">
-                <img src="foto 3.png" class="aa" alt="Album 3">
-                <div class="album-overlay">
-                    <h3>Nama Album 3</h3>
-                    <a href="#" class="play-button"><i class="fas fa-play"></i></a>
-                </div>
-            </div>
-            <div class="album-item">
-                <img src="foto 4.png" class="aa" alt="Album 4">
-                <div class="album-overlay">
-                    <h3>Nama Album 4</h3>
-                    <a href="#" class="play-button"><i class="fas fa-play"></i></a>
-                </div>
-            </div>
-            <div class="album-item">
-                <img src="foto 5.png" class="aa" alt="Album 5">
-                <div class="album-overlay">
-                    <h3>Nama Album 5</h3>
-                    <a href="#" class="play-button"><i class="fas fa-play"></i></a>
-                </div>
-            </div>
-            <div class="album-item">
-                <img src="foto 6.png" class="aa" alt="Album 6">
-                <div class="album-overlay">
-                    <h3>Nama Album 6</h3>
-                    <a href="#" class="play-button"><i class="fas fa-play"></i></a>
-                </div>
-            </div>
+            <!-- Album items will be added dynamically -->
         </div>
         
         <div class="add-album-form">
@@ -75,6 +34,7 @@
             <form id="albumForm">
                 <input type="text" placeholder="Nama Album" required>
                 <input type="url" placeholder="URL Gambar Album" required>
+                <input type="url" placeholder="Link Spotify Album" required>
                 <button type="submit" class="but"><i class="fas fa-save"></i> Tambah Album</button>
             </form>
         </div>
@@ -83,33 +43,8 @@
     <footer>
         <div class="footer-content">
             <p>&copy; 2025 Album Sholawat Azzahir. Dev: Muhammad Rian Akbar.</p>
-            </div>
         </div>
     </footer>
-    
-    <script>
-        document.getElementById('albumForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const albumName = this.elements[0].value;
-            const albumImage = this.elements[1].value;
-            
-            if (albumImage && albumName) {
-                const gallery = document.querySelector('.gallery-container');
-                const newAlbum = document.createElement('div');
-                newAlbum.className = 'album-item';
-                newAlbum.innerHTML = `
-                    <img src="${albumImage}" class="aa" alt="${albumName}">
-                    <div class="album-overlay">
-                        <h3>${albumName}</h3>
-                        <a href="#" class="play-button"><i class="fas fa-play"></i></a>
-                    </div>
-                `;
-                
-                gallery.appendChild(newAlbum);
-                this.reset();
-                alert(`Album "${albumName}" berhasil ditambahkan!`);
-            }
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
