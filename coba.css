@@ -1,6 +1,7 @@
 /* ===== VARIABLES ===== */
 :root {
     --primary: #1DB954;
+    --primary-dark: #178f43;
     --secondary: #191414;
     --accent: #4b367c;
     --light: #f8f9fa;
@@ -199,8 +200,24 @@ body {
     transition: transform 0.3s ease;
 }
 
+.album-link {
+    display: block;
+    position: relative;
+    text-decoration: none;
+    color: inherit;
+}
+
+.album-link:hover .aa {
+    transform: scale(1.03);
+}
+
+.album-link:hover .album-overlay {
+    background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+}
+
 .album-item:hover {
     transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
 }
 
 .aa {
@@ -208,6 +225,7 @@ body {
     height: 250px;
     object-fit: cover;
     display: block;
+    transition: transform 0.3s ease;
 }
 
 .album-overlay {
@@ -221,6 +239,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    transition: all 0.3s ease;
 }
 
 .album-overlay h3 {
@@ -237,11 +256,14 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    text-decoration: none;
     transition: all 0.3s ease;
 }
 
-.play-button:hover {
+.play-button i {
+    margin-left: 2px;
+}
+
+.album-link:hover .play-button {
     background-color: var(--accent);
     transform: scale(1.1);
 }
@@ -374,52 +396,58 @@ footer {
     margin: 0 auto;
 }
 
-.footer-links {
-    margin-top: 1rem;
-}
-
-.footer-links a {
-    color: white;
-    text-decoration: none;
-    margin: 0 1rem;
-    opacity: 0.8;
-    transition: opacity 0.3s ease;
-}
-
-.footer-links a:hover {
-    opacity: 1;
-    text-decoration: underline;
-}
-
 /* ===== RESPONSIVE ===== */
-@media (min-width: 768px) {
-    .profile-card {
-        flex-direction: row;
-        text-align: left;
-        padding: 3rem;
+@media (max-width: 768px) {
+    html {
+        font-size: 14px;
     }
-    
-    .profile-img {
-        margin-right: 2rem;
-        margin-bottom: 0;
+
+    .nav {
+        flex-direction: column;
+        padding: 1rem 0;
     }
-    
-    .profile-info {
-        text-align: left;
+
+    .nav a {
+        font-size: 1rem;
+        margin: 0.3rem 0;
     }
-    
-    .qr-card {
-        display: flex;
-        align-items: center;
+
+    .container {
+        padding: 1rem;
     }
-    
-    .qr-code {
-        padding: 3rem;
-        border-right: 1px solid #eee;
+
+    .gallery-container {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 15px;
     }
-    
-    .qr-instruction {
-        padding: 3rem;
-        text-align: left;
+
+    .aa {
+        height: 200px;
+    }
+
+    .add-album-form {
+        padding: 1rem;
+    }
+
+    .hero {
+        padding: 2rem 1rem;
+    }
+
+    .awal {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .gallery-container {
+        grid-template-columns: 1fr;
+    }
+
+    .album-overlay h3 {
+        font-size: 0.9rem;
+    }
+
+    .section-header h2 {
+        font-size: 1.3rem;
     }
 }
