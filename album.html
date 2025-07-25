@@ -5,8 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Album - Azzahir</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
 </head>
 <body>
     <div class="hero">
@@ -15,15 +13,15 @@
     </div>
     
     <div class="nav">
-        <a href="index.html"><i class="fas fa-home"></i> Home</a>
-        <a href="album.html" class="active"><i class="fas fa-compact-disc"></i> Album</a>
-        <a href="instagram.html"><i class="fab fa-instagram"></i> Instagram</a>
+        <a href="index.html">Home</a>
+        <a href="album.html" class="active">Album</a>
+        <a href="instagram.html">Instagram</a>
     </div>
     
     <div class="container">
         <div class="card">
             <div class="card-header">
-                <h2><i class="fas fa-music"></i> Koleksi Album</h2>
+                <h2>Koleksi Album</h2>
             </div>
             <div class="card-body">
                 <p class="section-description">Silahkan scan di aplikasi Spotify atau dengarkan langsung dari website kami. Setiap album mengandung makna dan keistimewaan tersendiri.</p>
@@ -31,77 +29,65 @@
                 <div class="card-grid">
                     <div class="card card-album" id="album1">
                         <div class="card-header">
-                            <h3><i class="fas fa-compact-disc"></i> Cahaya Madinah</h3>
+                            <h3>album 1</h3>
                         </div>
                         <div class="card-body">
                             <img src="foto 1.png" class="aa" alt="Cahaya Madinah">
                             <div class="album-meta">
-                                <span><i class="fas fa-clock"></i> 45 Menit</span>
-                                <span><i class="fas fa-list-ol"></i> 12 Lagu</span>
+                                <span>45 Menit</span>
+                                <span>12 Lagu</span>
                             </div>
                         </div>
                         <div class="card-footer">
-                            <a href="#" class="play-button"><i class="fas fa-play"></i> Play</a>
-                            <button class="download-btn" onclick="downloadCard('album1')">
-                                <i class="fas fa-download"></i> Card
-                            </button>
+                            <button class="download-btn" onclick="downloadCard('album1')">Card</button>
                         </div>
                     </div>
                     
                     <div class="card card-album" id="album2">
                         <div class="card-header">
-                            <h3><i class="fas fa-compact-disc"></i> Shalawat Badar</h3>
+                            <h3>album 2</h3>
                         </div>
                         <div class="card-body">
-                            <img src="foto2.png" class="aa" alt="Shalawat Badar">
+                            <img src="foto 2.png" class="aa" alt="Shalawat Badar">
                             <div class="album-meta">
-                                <span><i class="fas fa-clock"></i> 38 Menit</span>
-                                <span><i class="fas fa-list-ol"></i> 10 Lagu</span>
+                                <span>38 Menit</span>
+                                <span>10 Lagu</span>
                             </div>
                         </div>
                         <div class="card-footer">
-                            <a href="#" class="play-button"><i class="fas fa-play"></i> Play</a>
-                            <button class="download-btn" onclick="downloadCard('album2')">
-                                <i class="fas fa-download"></i> Card
-                            </button>
+                            <button class="download-btn" onclick="downloadCard('album2')">Card</button>
                         </div>
                     </div>
                     
                     <div class="card card-album" id="album3">
                         <div class="card-header">
-                            <h3><i class="fas fa-compact-disc"></i> Ya Thoybah</h3>
+                            <h3>album 3</h3>
                         </div>
                         <div class="card-body">
                             <img src="foto3.png" class="aa" alt="Ya Thoybah">
                             <div class="album-meta">
-                                <span><i class="fas fa-clock"></i> 52 Menit</span>
-                                <span><i class="fas fa-list-ol"></i> 15 Lagu</span>
+                                <span>52 Menit</span>
+                                <span>15 Lagu</span>
                             </div>
                         </div>
                         <div class="card-footer">
-                            <a href="#" class="play-button"><i class="fas fa-play"></i> Play</a>
-                            <button class="download-btn" onclick="downloadCard('album3')">
-                                <i class="fas fa-download"></i> Card
-                            </button>
+                            <button class="download-btn" onclick="downloadCard('album3')">Card</button>
                         </div>
                     </div>
                     
                     <div class="card card-album" id="album4">
                         <div class="card-header">
-                            <h3><i class="fas fa-compact-disc"></i> Mawlid Nabi</h3>
+                            <h3>album 4</h3>
                         </div>
                         <div class="card-body">
                             <img src="foto4.png" class="aa" alt="Mawlid Nabi">
                             <div class="album-meta">
-                                <span><i class="fas fa-clock"></i> 60 Menit</span>
-                                <span><i class="fas fa-list-ol"></i> 8 Lagu</span>
+                                <span>60 Menit</span>
+                                <span>8 Lagu</span>
                             </div>
                         </div>
                         <div class="card-footer">
-                            <a href="#" class="play-button"><i class="fas fa-play"></i> Play</a>
-                            <button class="download-btn" onclick="downloadCard('album4')">
-                                <i class="fas fa-download"></i> Card
-                            </button>
+                            <button class="download-btn" onclick="downloadCard('album4')">Card</button>
                         </div>
                     </div>
                 </div>
@@ -110,27 +96,27 @@
         
         <div class="card" id="add-album-card">
             <div class="card-header">
-                <h2><i class="fas fa-plus-circle"></i> Tambah Album Baru</h2>
+                <h2>Tambah Album Baru</h2>
             </div>
             <div class="card-body">
                 <form id="albumForm" class="album-form">
                     <div class="form-group">
-                        <label for="albumName"><i class="fas fa-heading"></i> Nama Album</label>
+                        <label for="albumName">Nama Album</label>
                         <input type="text" id="albumName" placeholder="Masukkan nama album" required>
                     </div>
                     <div class="form-group">
-                        <label for="albumImage"><i class="fas fa-image"></i> URL Gambar Album</label>
+                        <label for="albumImage">URL Gambar Album</label>
                         <input type="url" id="albumImage" placeholder="Masukkan URL gambar" required>
                     </div>
                     <div class="form-group">
-                        <label for="albumDuration"><i class="fas fa-clock"></i> Durasi</label>
+                        <label for="albumDuration">Durasi</label>
                         <input type="text" id="albumDuration" placeholder="Contoh: 45 Menit">
                     </div>
                     <div class="form-group">
-                        <label for="albumTracks"><i class="fas fa-list-ol"></i> Jumlah Lagu</label>
+                        <label for="albumTracks">Jumlah Lagu</label>
                         <input type="number" id="albumTracks" placeholder="Contoh: 12">
                     </div>
-                    <button type="submit" class="submit-btn"><i class="fas fa-save"></i> Tambah Album</button>
+                    <button type="submit" class="submit-btn">Tambah Album</button>
                 </form>
             </div>
         </div>
@@ -183,20 +169,17 @@
                 newAlbum.id = newId;
                 newAlbum.innerHTML = `
                     <div class="card-header">
-                        <h3><i class="fas fa-compact-disc"></i> ${name}</h3>
+                        <h3>${name}</h3>
                     </div>
                     <div class="card-body">
                         <img src="${image}" class="aa" alt="${name}">
                         <div class="album-meta">
-                            <span><i class="fas fa-clock"></i> ${duration}</span>
-                            <span><i class="fas fa-list-ol"></i> ${tracks} Lagu</span>
+                            <span>${duration}</span>
+                            <span>${tracks} Lagu</span>
                         </div>
                     </div>
                     <div class="card-footer">
-                        <a href="#" class="play-button"><i class="fas fa-play"></i> Play</a>
-                        <button class="download-btn" onclick="downloadCard('${newId}')">
-                            <i class="fas fa-download"></i> Card
-                        </button>
+                        <button class="download-btn" onclick="downloadCard('${newId}')">Card</button>
                     </div>
                 `;
                 
