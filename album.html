@@ -27,6 +27,7 @@
             display: flex;
             flex-direction: column;
             margin: 0 auto;
+            position: relative;
         }
         
         .album-card:hover {
@@ -39,6 +40,7 @@
             color: white;
             padding: 15px;
             text-align: center;
+            position: relative;
         }
         
         .album-image-container {
@@ -56,6 +58,11 @@
             height: 100%;
             object-fit: contain; /* Maintain aspect ratio */
             border-radius: 5px;
+            transition: transform 0.3s ease;
+        }
+        
+        .album-image:hover {
+            transform: scale(1.05);
         }
         
         .download-btn {
@@ -66,6 +73,7 @@
             cursor: pointer;
             font-weight: bold;
             transition: opacity 0.3s;
+            width: 100%;
         }
         
         .download-btn:hover {
@@ -74,6 +82,148 @@
         
         .download-btn i {
             margin-right: 8px;
+        }
+        
+        /* New Styles for Additional Features */
+        .search-container {
+            margin-bottom: 20px;
+            display: flex;
+            gap: 10px;
+        }
+        
+        #searchInput {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        
+        .filter-buttons {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .filter-btn {
+            padding: 8px 15px;
+            background: #f0f0f0;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .filter-btn.active {
+            background: #4b367c;
+            color: white;
+        }
+        
+        .album-actions {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            display: flex;
+            gap: 5px;
+        }
+        
+        .action-btn {
+            background: rgba(255,255,255,0.8);
+            border: none;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .action-btn:hover {
+            background: white;
+            transform: scale(1.1);
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-content {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 500px;
+            width: 90%;
+        }
+        
+        .close-modal {
+            float: right;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        
+        .share-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .share-btn {
+            padding: 8px 15px;
+            border-radius: 5px;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .share-whatsapp {
+            background: #25D366;
+        }
+        
+        .share-facebook {
+            background: #3b5998;
+        }
+        
+        .share-twitter {
+            background: #1DA1F2;
+        }
+        
+        .loading-spinner {
+            display: none;
+            text-align: center;
+            margin: 20px 0;
+        }
+        
+        .spinner {
+            border: 4px solid rgba(0,0,0,0.1);
+            border-radius: 50%;
+            border-top: 4px solid #4b367c;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .no-results {
+            text-align: center;
+            grid-column: 1 / -1;
+            padding: 20px;
+            color: #666;
         }
     </style>
 </head>
@@ -97,9 +247,29 @@
             <div class="card-body">
                 <p>Klik tombol download untuk menyimpan card album</p>
                 
-                <div class="album-container">
+                <!-- Search and Filter Section -->
+                <div class="search-container">
+                    <input type="text" id="searchInput" placeholder="Cari album...">
+                    <button class="filter-btn active" onclick="filterAlbums('all')">Semua</button>
+                    <button class="filter-btn" onclick="filterAlbums('favorite')">Favorit</button>
+                </div>
+                
+                <div class="loading-spinner" id="loadingSpinner">
+                    <div class="spinner"></div>
+                    <p>Memuat album...</p>
+                </div>
+                
+                <div class="album-container" id="albumContainer">
                     <!-- Album 1 -->
-                    <div class="album-card" id="album1">
+                    <div class="album-card" id="album1" data-title="Album 1" data-favorite="false">
+                        <div class="album-actions">
+                            <button class="action-btn" onclick="toggleFavorite('album1')">
+                                <i class="far fa-heart"></i>
+                            </button>
+                            <button class="action-btn" onclick="shareAlbum('album1')">
+                                <i class="fas fa-share-alt"></i>
+                            </button>
+                        </div>
                         <div class="album-header">
                             <h3>Album 1</h3>
                         </div>
@@ -112,7 +282,15 @@
                     </div>
                     
                     <!-- Album 2 -->
-                    <div class="album-card" id="album2">
+                    <div class="album-card" id="album2" data-title="Album 2" data-favorite="false">
+                        <div class="album-actions">
+                            <button class="action-btn" onclick="toggleFavorite('album2')">
+                                <i class="far fa-heart"></i>
+                            </button>
+                            <button class="action-btn" onclick="shareAlbum('album2')">
+                                <i class="fas fa-share-alt"></i>
+                            </button>
+                        </div>
                         <div class="album-header">
                             <h3>Album 2</h3>
                         </div>
@@ -125,7 +303,15 @@
                     </div>
                     
                     <!-- Album 3 -->
-                    <div class="album-card" id="album3">
+                    <div class="album-card" id="album3" data-title="Album 3" data-favorite="false">
+                        <div class="album-actions">
+                            <button class="action-btn" onclick="toggleFavorite('album3')">
+                                <i class="far fa-heart"></i>
+                            </button>
+                            <button class="action-btn" onclick="shareAlbum('album3')">
+                                <i class="fas fa-share-alt"></i>
+                            </button>
+                        </div>
                         <div class="album-header">
                             <h3>Album 3</h3>
                         </div>
@@ -138,7 +324,15 @@
                     </div>
                     
                     <!-- Album 4 -->
-                    <div class="album-card" id="album4">
+                    <div class="album-card" id="album4" data-title="Album 4" data-favorite="false">
+                        <div class="album-actions">
+                            <button class="action-btn" onclick="toggleFavorite('album4')">
+                                <i class="far fa-heart"></i>
+                            </button>
+                            <button class="action-btn" onclick="shareAlbum('album4')">
+                                <i class="fas fa-share-alt"></i>
+                            </button>
+                        </div>
                         <div class="album-header">
                             <h3>Album 4</h3>
                         </div>
@@ -151,7 +345,15 @@
                     </div>
                     
                     <!-- Album 5 -->
-                    <div class="album-card" id="album5">
+                    <div class="album-card" id="album5" data-title="Album 5" data-favorite="false">
+                        <div class="album-actions">
+                            <button class="action-btn" onclick="toggleFavorite('album5')">
+                                <i class="far fa-heart"></i>
+                            </button>
+                            <button class="action-btn" onclick="shareAlbum('album5')">
+                                <i class="fas fa-share-alt"></i>
+                            </button>
+                        </div>
                         <div class="album-header">
                             <h3>Album 5</h3>
                         </div>
@@ -164,7 +366,15 @@
                     </div>
                     
                     <!-- Album 6 -->
-                    <div class="album-card" id="album6">
+                    <div class="album-card" id="album6" data-title="Album 6" data-favorite="false">
+                        <div class="album-actions">
+                            <button class="action-btn" onclick="toggleFavorite('album6')">
+                                <i class="far fa-heart"></i>
+                            </button>
+                            <button class="action-btn" onclick="shareAlbum('album6')">
+                                <i class="fas fa-share-alt"></i>
+                            </button>
+                        </div>
                         <div class="album-header">
                             <h3>Album 6</h3>
                         </div>
@@ -180,6 +390,26 @@
         </div>
     </div>
     
+    <!-- Share Modal -->
+    <div class="modal" id="shareModal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <h3>Bagikan Album</h3>
+            <p id="shareAlbumTitle">Album 1</p>
+            <div class="share-buttons">
+                <button class="share-btn share-whatsapp" onclick="shareViaWhatsApp()">
+                    <i class="fab fa-whatsapp"></i> WhatsApp
+                </button>
+                <button class="share-btn share-facebook" onclick="shareViaFacebook()">
+                    <i class="fab fa-facebook"></i> Facebook
+                </button>
+                <button class="share-btn share-twitter" onclick="shareViaTwitter()">
+                    <i class="fab fa-twitter"></i> Twitter
+                </button>
+            </div>
+        </div>
+    </div>
+    
     <footer>
         <div class="footer-content">
             <p>&copy; 2025 Album Sholawat Azzahir. Dev: Muhammad Rian Akbar.</p>
@@ -187,37 +417,190 @@
     </footer>
 
     <script>
+        // Current album being shared
+        let currentSharedAlbum = null;
+        
+        // Show loading spinner
+        function showLoading() {
+            document.getElementById('loadingSpinner').style.display = 'block';
+        }
+        
+        // Hide loading spinner
+        function hideLoading() {
+            document.getElementById('loadingSpinner').style.display = 'none';
+        }
+        
+        // Download card as image
         function downloadCard(cardId) {
+            showLoading();
             const element = document.getElementById(cardId);
             
-            // Calculate the exact dimensions for the canvas
-            const width = element.offsetWidth;
-            const height = element.offsetHeight;
-            
             const options = {
-                width: width,
-                height: height,
-                scale: 2, // Higher quality
+                width: element.offsetWidth,
+                height: element.offsetHeight,
+                scale: 2,
                 backgroundColor: null,
                 logging: false,
                 useCORS: true,
-                allowTaint: true,
-                windowWidth: width,
-                windowHeight: height
+                allowTaint: true
             };
             
             html2canvas(element, options).then(canvas => {
-                // Create a temporary link to download the image
                 const link = document.createElement('a');
                 link.download = 'album-card-' + cardId + '.png';
                 link.href = canvas.toDataURL('image/png');
                 
-                // Trigger the download
                 document.body.appendChild(link);
                 link.click();
                 document.body.removeChild(link);
+                hideLoading();
             });
         }
+        
+        // Toggle favorite status
+        function toggleFavorite(albumId) {
+            const album = document.getElementById(albumId);
+            const isFavorite = album.getAttribute('data-favorite') === 'true';
+            
+            album.setAttribute('data-favorite', !isFavorite);
+            const heartIcon = album.querySelector('.fa-heart');
+            
+            if (isFavorite) {
+                heartIcon.classList.remove('fas');
+                heartIcon.classList.add('far');
+            } else {
+                heartIcon.classList.remove('far');
+                heartIcon.classList.add('fas');
+            }
+            
+            // Save to localStorage
+            const favorites = JSON.parse(localStorage.getItem('albumFavorites')) || {};
+            favorites[albumId] = !isFavorite;
+            localStorage.setItem('albumFavorites', JSON.stringify(favorites));
+        }
+        
+        // Filter albums
+        function filterAlbums(filter) {
+            const albums = document.querySelectorAll('.album-card');
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            
+            albums.forEach(album => {
+                const title = album.getAttribute('data-title').toLowerCase();
+                const isFavorite = album.getAttribute('data-favorite') === 'true';
+                
+                let shouldShow = true;
+                
+                // Apply search filter
+                if (searchTerm && !title.includes(searchTerm)) {
+                    shouldShow = false;
+                }
+                
+                // Apply favorite filter
+                if (filter === 'favorite' && !isFavorite) {
+                    shouldShow = false;
+                }
+                
+                album.style.display = shouldShow ? 'flex' : 'none';
+            });
+            
+            // Update active filter button
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            // Show no results message if needed
+            const visibleAlbums = document.querySelectorAll('.album-card[style*="flex"]').length;
+            let noResults = document.getElementById('noResults');
+            
+            if (visibleAlbums === 0) {
+                if (!noResults) {
+                    noResults = document.createElement('div');
+                    noResults.id = 'noResults';
+                    noResults.className = 'no-results';
+                    noResults.textContent = 'Tidak ada album yang ditemukan';
+                    document.getElementById('albumContainer').appendChild(noResults);
+                }
+            } else if (noResults) {
+                noResults.remove();
+            }
+        }
+        
+        // Share album
+        function shareAlbum(albumId) {
+            currentSharedAlbum = albumId;
+            const albumTitle = document.getElementById(albumId).getAttribute('data-title');
+            document.getElementById('shareAlbumTitle').textContent = albumTitle;
+            document.getElementById('shareModal').style.display = 'flex';
+        }
+        
+        // Close modal
+        function closeModal() {
+            document.getElementById('shareModal').style.display = 'none';
+        }
+        
+        // Share via WhatsApp
+        function shareViaWhatsApp() {
+            const albumTitle = document.getElementById(currentSharedAlbum).getAttribute('data-title');
+            const shareUrl = window.location.href + '#' + currentSharedAlbum;
+            const text = `Lihat album ${albumTitle} di Azzahir: ${shareUrl}`;
+            window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
+        }
+        
+        // Share via Facebook
+        function shareViaFacebook() {
+            const shareUrl = window.location.href + '#' + currentSharedAlbum;
+            window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`, '_blank');
+        }
+        
+        // Share via Twitter
+        function shareViaTwitter() {
+            const albumTitle = document.getElementById(currentSharedAlbum).getAttribute('data-title');
+            const shareUrl = window.location.href + '#' + currentSharedAlbum;
+            const text = `Lihat album ${albumTitle} di Azzahir`;
+            window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(shareUrl)}`, '_blank');
+        }
+        
+        // Initialize favorites from localStorage
+        function initFavorites() {
+            const favorites = JSON.parse(localStorage.getItem('albumFavorites')) || {};
+            
+            for (const albumId in favorites) {
+                if (favorites[albumId]) {
+                    const album = document.getElementById(albumId);
+                    if (album) {
+                        album.setAttribute('data-favorite', 'true');
+                        const heartIcon = album.querySelector('.fa-heart');
+                        heartIcon.classList.remove('far');
+                        heartIcon.classList.add('fas');
+                    }
+                }
+            }
+        }
+        
+        // Search functionality
+        document.getElementById('searchInput').addEventListener('input', function() {
+            filterAlbums(document.querySelector('.filter-btn.active').textContent.toLowerCase());
+        });
+        
+        // Initialize on page load
+        window.onload = function() {
+            initFavorites();
+            
+            // Check for hash in URL to scroll to specific album
+            if (window.location.hash) {
+                const album = document.getElementById(window.location.hash.substring(1));
+                if (album) {
+                    album.scrollIntoView({ behavior: 'smooth' });
+                    
+                    // Highlight the album temporarily
+                    album.style.boxShadow = '0 0 0 3px rgba(75, 54, 124, 0.5)';
+                    setTimeout(() => {
+                        album.style.boxShadow = '';
+                    }, 3000);
+                }
+            }
+        };
     </script>
 </body>
 </html>
