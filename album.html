@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Album - Azzahir</title>
+    <title>Album Sholawat Azzahir</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
     <style>
@@ -12,53 +12,74 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Poppins', sans-serif;
         }
         
         body {
-            background-color: #121212;
-            color: #e0e0e0;
+            background-color: #0f172a;
+            color: #e2e8f0;
+            line-height: 1.6;
+        }
+        
+        @font-face {
+            font-family: 'Poppins';
+            src: url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
         }
         
         .hero {
-            background: linear-gradient(135deg, #1a1a1a, #000000);
-            color: #ffffff;
+            background: linear-gradient(135deg, #1e293b, #0f172a);
+            color: #f8fafc;
             text-align: center;
-            padding: 30px 20px;
+            padding: 40px 20px;
             margin-bottom: 20px;
+            border-bottom: 1px solid #1e293b;
         }
         
         .hero h1 {
-            font-size: 2.5rem;
+            font-size: 2.8rem;
             margin-bottom: 10px;
+            font-weight: 700;
+            background: linear-gradient(to right, #7c3aed, #a855f7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
         }
         
         .nav {
             display: flex;
             justify-content: center;
-            background-color: #1e1e1e;
+            background-color: #1e293b;
             padding: 15px 0;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
             margin-bottom: 30px;
+            border-bottom: 1px solid #334155;
         }
         
         .nav a {
-            color: #bb86fc;
+            color: #cbd5e1;
             text-decoration: none;
-            padding: 10px 20px;
-            margin: 0 10px;
-            border-radius: 5px;
+            padding: 10px 25px;
+            margin: 0 5px;
+            border-radius: 8px;
             transition: all 0.3s;
             font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
         
         .nav a:hover {
-            background-color: #333333;
+            background-color: #334155;
+            color: #e2e8f0;
         }
         
         .nav a.active {
-            background-color: #bb86fc;
-            color: #000000;
+            background-color: #7c3aed;
+            color: white;
+            box-shadow: 0 4px 6px rgba(124, 58, 237, 0.3);
         }
         
         .container {
@@ -68,28 +89,32 @@
         }
         
         .card {
-            background-color: #1e1e1e;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            background-color: #1e293b;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
             margin-bottom: 30px;
             overflow: hidden;
-            border: 1px solid #333;
+            border: 1px solid #334155;
         }
         
         .card-header {
-            background-color: #252525;
+            background-color: #1e293b;
             padding: 20px;
-            border-bottom: 1px solid #333;
+            border-bottom: 1px solid #334155;
         }
         
         .card-header h2 {
-            color: #bb86fc;
+            color: #a855f7;
             font-size: 1.5rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
         
         .card-body {
             padding: 20px;
-            color: #e0e0e0;
+            color: #e2e8f0;
         }
         
         /* Album Card Styles */
@@ -101,31 +126,37 @@
         }
         
         .album-card {
-            border-radius: 10px;
+            border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-            transition: transform 0.3s ease;
-            background: #252525;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            background: #1e293b;
             width: 100%;
             height: 350px;
             display: flex;
             flex-direction: column;
             position: relative;
-            border: 1px solid #333;
+            border: 1px solid #334155;
         }
         
         .album-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 6px 12px rgba(0,0,0,0.4);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.3);
+            border-color: #7c3aed;
         }
         
         .album-header {
-            background: linear-gradient(135deg, #333333, #1a1a1a);
-            color: #ffffff;
+            background: linear-gradient(135deg, #7c3aed, #a855f7);
+            color: white;
             padding: 15px;
             text-align: center;
             position: relative;
-            border-bottom: 1px solid #333;
+            border-bottom: 1px solid #334155;
+        }
+        
+        .album-header h3 {
+            font-weight: 600;
+            font-size: 1.2rem;
         }
         
         .album-image-container {
@@ -136,14 +167,14 @@
             padding: 15px;
             position: relative;
             overflow: hidden;
-            background-color: #121212;
+            background-color: #0f172a;
         }
         
         .album-image {
             width: 100%;
             height: 100%;
             object-fit: contain;
-            border-radius: 5px;
+            border-radius: 8px;
             transition: transform 0.3s ease;
         }
         
@@ -152,24 +183,24 @@
         }
         
         .download-btn {
-            background: linear-gradient(135deg, #333333, #1a1a1a);
+            background: linear-gradient(135deg, #7c3aed, #a855f7);
             color: white;
             border: none;
-            padding: 10px;
+            padding: 12px;
             cursor: pointer;
-            font-weight: bold;
-            transition: opacity 0.3s;
+            font-weight: 600;
+            transition: all 0.3s;
             width: 100%;
-            border-top: 1px solid #333;
+            border-top: 1px solid #334155;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
         }
         
         .download-btn:hover {
             opacity: 0.9;
-            background: linear-gradient(135deg, #3a3a3a, #222222);
-        }
-        
-        .download-btn i {
-            margin-right: 8px;
+            background: linear-gradient(135deg, #6d28d9, #9333ea);
         }
         
         /* Album Actions */
@@ -178,54 +209,59 @@
             top: 10px;
             right: 10px;
             display: flex;
-            gap: 5px;
+            gap: 8px;
         }
         
         .action-btn {
-            background: rgba(30,30,30,0.8);
-            border: 1px solid #444;
-            width: 30px;
-            height: 30px;
+            background: rgba(30, 41, 59, 0.8);
+            border: 1px solid #475569;
+            width: 32px;
+            height: 32px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
             transition: all 0.3s;
-            color: #bb86fc;
+            color: #a855f7;
+            backdrop-filter: blur(5px);
         }
         
         .action-btn:hover {
-            background: #333;
+            background: #7c3aed;
+            color: white;
             transform: scale(1.1);
+            border-color: #7c3aed;
         }
         
         /* Add Album Button */
         .add-album-card {
-            border: 2px dashed #bb86fc;
+            border: 2px dashed #7c3aed;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             cursor: pointer;
             transition: all 0.3s ease;
-            background-color: #252525;
+            background-color: rgba(30, 41, 59, 0.5);
         }
         
         .add-album-card:hover {
-            background-color: #333333;
-            border-color: #9a67ea;
+            background-color: rgba(124, 58, 237, 0.1);
+            border-color: #a855f7;
         }
         
         .add-album-icon {
             font-size: 48px;
-            color: #bb86fc;
+            color: #7c3aed;
             margin-bottom: 15px;
+            transition: all 0.3s;
         }
         
         .add-album-text {
-            color: #bb86fc;
-            font-weight: bold;
+            color: #7c3aed;
+            font-weight: 600;
+            font-size: 1.1rem;
         }
         
         /* Search and Filter */
@@ -237,31 +273,44 @@
         
         #searchInput {
             flex: 1;
-            padding: 10px;
-            border: 1px solid #333;
-            border-radius: 5px;
+            padding: 12px 15px;
+            border: 1px solid #334155;
+            border-radius: 8px;
             font-size: 16px;
-            background-color: #252525;
-            color: #e0e0e0;
+            background-color: #1e293b;
+            color: #e2e8f0;
+            transition: all 0.3s;
+        }
+        
+        #searchInput:focus {
+            outline: none;
+            border-color: #7c3aed;
+            box-shadow: 0 0 0 2px rgba(124, 58, 237, 0.3);
         }
         
         #searchInput::placeholder {
-            color: #777;
+            color: #64748b;
         }
         
         .filter-btn {
-            padding: 8px 15px;
-            background: #333;
+            padding: 10px 20px;
+            background: #334155;
             border: none;
-            border-radius: 5px;
+            border-radius: 8px;
             cursor: pointer;
             transition: all 0.3s;
-            color: #e0e0e0;
+            color: #e2e8f0;
+            font-weight: 500;
+        }
+        
+        .filter-btn:hover {
+            background: #475569;
         }
         
         .filter-btn.active {
-            background: #bb86fc;
-            color: #000;
+            background: #7c3aed;
+            color: white;
+            box-shadow: 0 4px 6px rgba(124, 58, 237, 0.3);
         }
         
         /* Loading Spinner */
@@ -272,11 +321,11 @@
         }
         
         .spinner {
-            border: 4px solid rgba(0,0,0,0.1);
+            border: 4px solid rgba(30, 41, 59, 0.2);
             border-radius: 50%;
-            border-top: 4px solid #bb86fc;
-            width: 30px;
-            height: 30px;
+            border-top: 4px solid #7c3aed;
+            width: 40px;
+            height: 40px;
             animation: spin 1s linear infinite;
             margin: 0 auto;
         }
@@ -290,8 +339,9 @@
         .no-results {
             text-align: center;
             grid-column: 1 / -1;
-            padding: 20px;
-            color: #777;
+            padding: 30px;
+            color: #94a3b8;
+            font-size: 1.1rem;
         }
         
         /* Modals */
@@ -302,44 +352,73 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.8);
+            background: rgba(15, 23, 42, 0.9);
             z-index: 1000;
             align-items: center;
             justify-content: center;
+            backdrop-filter: blur(5px);
         }
         
         .modal-content {
-            background: #252525;
-            padding: 20px;
-            border-radius: 10px;
+            background: #1e293b;
+            padding: 25px;
+            border-radius: 12px;
             max-width: 500px;
             width: 90%;
-            border: 1px solid #333;
+            border: 1px solid #334155;
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .modal-content h3 {
+            color: #a855f7;
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+        
+        .modal-content p {
+            color: #e2e8f0;
+            margin-bottom: 20px;
         }
         
         .close-modal {
             float: right;
             font-size: 24px;
             cursor: pointer;
-            color: #bb86fc;
+            color: #a855f7;
+            transition: all 0.3s;
+        }
+        
+        .close-modal:hover {
+            color: #7c3aed;
+            transform: scale(1.1);
         }
         
         /* Share Buttons */
         .share-buttons {
             display: flex;
-            gap: 10px;
+            gap: 12px;
             margin-top: 20px;
+            flex-wrap: wrap;
         }
         
         .share-btn {
-            padding: 8px 15px;
-            border-radius: 5px;
+            padding: 10px 20px;
+            border-radius: 8px;
             color: white;
             border: none;
             cursor: pointer;
             display: flex;
             align-items: center;
-            gap: 5px;
+            gap: 8px;
+            font-weight: 500;
+            transition: all 0.3s;
+            flex: 1;
+            justify-content: center;
+        }
+        
+        .share-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
         }
         
         .share-whatsapp {
@@ -362,59 +441,77 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.8);
+            background: rgba(15, 23, 42, 0.9);
             z-index: 1000;
             align-items: center;
             justify-content: center;
+            backdrop-filter: blur(5px);
         }
         
         .delete-modal-content {
-            background: #252525;
-            padding: 20px;
-            border-radius: 10px;
+            background: #1e293b;
+            padding: 25px;
+            border-radius: 12px;
             max-width: 400px;
             width: 90%;
             text-align: center;
-            border: 1px solid #333;
+            border: 1px solid #334155;
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.3);
         }
         
         .delete-buttons {
             display: flex;
             justify-content: center;
             gap: 15px;
-            margin-top: 20px;
+            margin-top: 25px;
         }
         
         .delete-confirm-btn {
-            padding: 8px 20px;
-            background: #e74c3c;
+            padding: 10px 25px;
+            background: #ef4444;
             color: white;
             border: none;
-            border-radius: 5px;
+            border-radius: 8px;
             cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+        
+        .delete-confirm-btn:hover {
+            background: #dc2626;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(239, 68, 68, 0.3);
         }
         
         .delete-cancel-btn {
-            padding: 8px 20px;
-            background: #3498db;
+            padding: 10px 25px;
+            background: #334155;
             color: white;
             border: none;
-            border-radius: 5px;
+            border-radius: 8px;
             cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+        
+        .delete-cancel-btn:hover {
+            background: #475569;
+            transform: translateY(-2px);
         }
         
         /* Footer */
         footer {
-            background-color: #1a1a1a;
-            color: #bb86fc;
+            background-color: #1e293b;
+            color: #a855f7;
             text-align: center;
-            padding: 20px;
-            margin-top: 30px;
-            border-top: 1px solid #333;
+            padding: 25px;
+            margin-top: 50px;
+            border-top: 1px solid #334155;
         }
         
         .footer-content p {
             margin: 0;
+            font-size: 0.9rem;
         }
         
         /* Hidden Elements */
@@ -425,15 +522,42 @@
         .upload-progress {
             display: none;
             margin-top: 10px;
-            color: #bb86fc;
+            color: #7c3aed;
             font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .album-container {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+            
+            .nav {
+                flex-wrap: wrap;
+            }
+            
+            .nav a {
+                padding: 8px 15px;
+                font-size: 0.9rem;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .share-buttons {
+                flex-direction: column;
+            }
         }
     </style>
 </head>
 <body>
     <div class="hero">
-        <h1 class="awal">Album Azzahir</h1>
-        <p class="tagline">Koleksi Lengkap Sholawat Digital</p>
+        <h1 class="awal">Album Sholawat Azzahir</h1>
+        <p class="tagline">Koleksi Terbaik Sholawat Nabawi</p>
     </div>
     
     <div class="nav">
@@ -833,7 +957,7 @@
             if (!file) return;
             
             // Show upload progress
-            document.getElementById('uploadProgress').style.display = 'block';
+            document.getElementById('uploadProgress').style.display = 'flex';
             
             // Create a new album card with the uploaded image
             createAlbumCard(file);
@@ -1000,7 +1124,7 @@
                     album.scrollIntoView({ behavior: 'smooth' });
                     
                     // Highlight the album temporarily
-                    album.style.boxShadow = '0 0 0 3px rgba(187, 134, 252, 0.5)';
+                    album.style.boxShadow = '0 0 0 3px rgba(124, 58, 237, 0.5)';
                     setTimeout(() => {
                         album.style.boxShadow = '';
                     }, 3000);
