@@ -228,119 +228,13 @@
             </div>
             
             <div class="album-container" id="albumContainer">
-                <!-- Album 1 -->
-                <div class="album-card" id="album1">
-                    <div class="album-header">
-                        <h3>Album 1</h3>
-                    </div>
-                    <div class="album-image-container">
-                        <img src="foto 1.png" class="album-image" alt="Album 1">
-                    </div>
-                    <div class="album-actions">
-                        <button class="action-btn" onclick="downloadCard('album1')">
-                            <i class="fas fa-download"></i> Download
-                        </button>
-                        <button class="action-btn delete-btn" onclick="confirmDelete('album1')">
-                            <i class="fas fa-trash"></i> Hapus
-                        </button>
-                    </div>
-                </div>
-                
-                <!-- Album 2 -->
-                <div class="album-card" id="album2">
-                    <div class="album-header">
-                        <h3>Album 2</h3>
-                    </div>
-                    <div class="album-image-container">
-                        <img src="foto 2.png" class="album-image" alt="Album 2">
-                    </div>
-                    <div class="album-actions">
-                        <button class="action-btn" onclick="downloadCard('album2')">
-                            <i class="fas fa-download"></i> Download
-                        </button>
-                        <button class="action-btn delete-btn" onclick="confirmDelete('album2')">
-                            <i class="fas fa-trash"></i> Hapus
-                        </button>
-                    </div>
-                </div>
-                
-                <!-- Album 3 -->
-                <div class="album-card" id="album3">
-                    <div class="album-header">
-                        <h3>Album 3</h3>
-                    </div>
-                    <div class="album-image-container">
-                        <img src="foto 3.png" class="album-image" alt="Album 3">
-                    </div>
-                    <div class="album-actions">
-                        <button class="action-btn" onclick="downloadCard('album3')">
-                            <i class="fas fa-download"></i> Download
-                        </button>
-                        <button class="action-btn delete-btn" onclick="confirmDelete('album3')">
-                            <i class="fas fa-trash"></i> Hapus
-                        </button>
-                    </div>
-                </div>
-                
-                <!-- Album 4 -->
-                <div class="album-card" id="album4">
-                    <div class="album-header">
-                        <h3>Album 4</h3>
-                    </div>
-                    <div class="album-image-container">
-                        <img src="foto 4.png" class="album-image" alt="Album 4">
-                    </div>
-                    <div class="album-actions">
-                        <button class="action-btn" onclick="downloadCard('album4')">
-                            <i class="fas fa-download"></i> Download
-                        </button>
-                        <button class="action-btn delete-btn" onclick="confirmDelete('album4')">
-                            <i class="fas fa-trash"></i> Hapus
-                        </button>
-                    </div>
-                </div>
-                
-                <!-- Album 5 -->
-                <div class="album-card" id="album5">
-                    <div class="album-header">
-                        <h3>Album 5</h3>
-                    </div>
-                    <div class="album-image-container">
-                        <img src="foto 5.png" class="album-image" alt="Album 5">
-                    </div>
-                    <div class="album-actions">
-                        <button class="action-btn" onclick="downloadCard('album5')">
-                            <i class="fas fa-download"></i> Download
-                        </button>
-                        <button class="action-btn delete-btn" onclick="confirmDelete('album5')">
-                            <i class="fas fa-trash"></i> Hapus
-                        </button>
-                    </div>
-                </div>
-                
-                <!-- Album 6 -->
-                <div class="album-card" id="album6">
-                    <div class="album-header">
-                        <h3>Album 6</h3>
-                    </div>
-                    <div class="album-image-container">
-                        <img src="foto 6.png" class="album-image" alt="Album 6">
-                    </div>
-                    <div class="album-actions">
-                        <button class="action-btn" onclick="downloadCard('album6')">
-                            <i class="fas fa-download"></i> Download
-                        </button>
-                        <button class="action-btn delete-btn" onclick="confirmDelete('album6')">
-                            <i class="fas fa-trash"></i> Hapus
-                        </button>
-                    </div>
-                </div>
-                
-                <!-- Add Album Card -->
-                <div class="add-album-card" onclick="document.getElementById('imageUpload').click()">
-                    <i class="fas fa-plus-circle add-album-icon"></i>
-                    <div class="add-album-text">Tambah Album Baru</div>
-                </div>
+                <!-- Album cards will be loaded here -->
+            </div>
+            
+            <!-- Add Album Card -->
+            <div class="add-album-card" onclick="document.getElementById('imageUpload').click()">
+                <i class="fas fa-plus-circle add-album-icon"></i>
+                <div class="add-album-text">Tambah Album Baru</div>
             </div>
         </div>
     </div>
@@ -364,7 +258,74 @@
     <script>
         // Variable to store current album to delete
         let albumToDelete = null;
-        let albumCount = 6; // Starting count for new albums
+        let albums = [];
+        
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            loadAlbums();
+        });
+        
+        // Load albums from localStorage
+        function loadAlbums() {
+            const savedAlbums = localStorage.getItem('azzahirAlbums');
+            if (savedAlbums) {
+                albums = JSON.parse(savedAlbums);
+                renderAlbums();
+            } else {
+                // Default albums if none exist
+                albums = [
+                    { id: 'album1', title: 'Album 1', image: 'foto 1.png' },
+                    { id: 'album2', title: 'Album 2', image: 'foto 2.png' },
+                    { id: 'album3', title: 'Album 3', image: 'foto 3.png' },
+                    { id: 'album4', title: 'Album 4', image: 'foto 4.png' },
+                    { id: 'album5', title: 'Album 5', image: 'foto 5.png' },
+                    { id: 'album6', title: 'Album 6', image: 'foto 6.png' }
+                ];
+                saveAlbums();
+                renderAlbums();
+            }
+        }
+        
+        // Save albums to localStorage
+        function saveAlbums() {
+            localStorage.setItem('azzahirAlbums', JSON.stringify(albums));
+        }
+        
+        // Render all albums to the page
+        function renderAlbums() {
+            const albumContainer = document.getElementById('albumContainer');
+            const addAlbumCard = document.querySelector('.add-album-card');
+            
+            // Clear existing albums (except the add button)
+            albumContainer.innerHTML = '';
+            
+            // Add each album to the container
+            albums.forEach(album => {
+                const albumElement = document.createElement('div');
+                albumElement.className = 'album-card';
+                albumElement.id = album.id;
+                albumElement.innerHTML = `
+                    <div class="album-header">
+                        <h3>${album.title}</h3>
+                    </div>
+                    <div class="album-image-container">
+                        <img src="${album.image}" class="album-image" alt="${album.title}">
+                    </div>
+                    <div class="album-actions">
+                        <button class="action-btn" onclick="downloadCard('${album.id}')">
+                            <i class="fas fa-download"></i> Download
+                        </button>
+                        <button class="action-btn delete-btn" onclick="confirmDelete('${album.id}')">
+                            <i class="fas fa-trash"></i> Hapus
+                        </button>
+                    </div>
+                `;
+                albumContainer.appendChild(albumElement);
+            });
+            
+            // Add the "Add Album" card back at the end
+            albumContainer.appendChild(addAlbumCard);
+        }
         
         // Download card as image
         function downloadCard(cardId) {
@@ -399,12 +360,14 @@
         
         // Delete album function
         function deleteAlbum(albumId) {
-            const albumElement = document.getElementById(albumId);
-            if (albumElement) {
-                albumElement.remove();
-                // Here you can add code to remove from localStorage if needed
-                // removeFromLocalStorage(albumId);
-            }
+            // Remove from array
+            albums = albums.filter(album => album.id !== albumId);
+            
+            // Save to localStorage
+            saveAlbums();
+            
+            // Re-render albums
+            renderAlbums();
         }
         
         // Handle adding new albums
@@ -418,7 +381,20 @@
             const reader = new FileReader();
             reader.onload = function(event) {
                 // Create new album
-                createNewAlbum(event.target.result);
+                const newAlbum = {
+                    id: 'album-' + Date.now(),
+                    title: 'Album ' + (albums.length + 1),
+                    image: event.target.result
+                };
+                
+                // Add to array
+                albums.push(newAlbum);
+                
+                // Save to localStorage
+                saveAlbums();
+                
+                // Re-render albums
+                renderAlbums();
                 
                 // Hide upload progress
                 document.getElementById('uploadProgress').style.display = 'none';
@@ -428,40 +404,6 @@
             };
             reader.readAsDataURL(file);
         });
-        
-        // Create a new album card
-        function createNewAlbum(imageSrc) {
-            albumCount++;
-            const albumId = 'album-' + Date.now();
-            const albumContainer = document.getElementById('albumContainer');
-            const addAlbumCard = document.querySelector('.add-album-card');
-            
-            const newAlbum = document.createElement('div');
-            newAlbum.className = 'album-card';
-            newAlbum.id = albumId;
-            newAlbum.innerHTML = `
-                <div class="album-header">
-                    <h3>Album ${albumCount}</h3>
-                </div>
-                <div class="album-image-container">
-                    <img src="${imageSrc}" class="album-image" alt="Album ${albumCount}">
-                </div>
-                <div class="album-actions">
-                    <button class="action-btn" onclick="downloadCard('${albumId}')">
-                        <i class="fas fa-download"></i> Download
-                    </button>
-                    <button class="action-btn delete-btn" onclick="confirmDelete('${albumId}')">
-                        <i class="fas fa-trash"></i> Hapus
-                    </button>
-                </div>
-            `;
-            
-            // Insert before the add album card
-            albumContainer.insertBefore(newAlbum, addAlbumCard);
-            
-            // Here you can add code to save to localStorage if needed
-            // saveToLocalStorage(albumId, imageSrc, albumCount);
-        }
     </script>
 </body>
 </html>
