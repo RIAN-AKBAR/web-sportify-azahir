@@ -16,13 +16,13 @@
         }
         
         body {
-            background-color: #f5f5f5;
-            color: #333;
+            background-color: #121212;
+            color: #e0e0e0;
         }
         
         .hero {
-            background: linear-gradient(135deg, #4b367c, #2a1b4d);
-            color: white;
+            background: linear-gradient(135deg, #1a1a1a, #000000);
+            color: #ffffff;
             text-align: center;
             padding: 30px 20px;
             margin-bottom: 20px;
@@ -36,14 +36,14 @@
         .nav {
             display: flex;
             justify-content: center;
-            background-color: white;
+            background-color: #1e1e1e;
             padding: 15px 0;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
             margin-bottom: 30px;
         }
         
         .nav a {
-            color: #4b367c;
+            color: #bb86fc;
             text-decoration: none;
             padding: 10px 20px;
             margin: 0 10px;
@@ -53,12 +53,12 @@
         }
         
         .nav a:hover {
-            background-color: #f0e6ff;
+            background-color: #333333;
         }
         
         .nav a.active {
-            background-color: #4b367c;
-            color: white;
+            background-color: #bb86fc;
+            color: #000000;
         }
         
         .container {
@@ -68,26 +68,28 @@
         }
         
         .card {
-            background-color: white;
+            background-color: #1e1e1e;
             border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
             margin-bottom: 30px;
             overflow: hidden;
+            border: 1px solid #333;
         }
         
         .card-header {
-            background-color: #f8f9fa;
+            background-color: #252525;
             padding: 20px;
-            border-bottom: 1px solid #eee;
+            border-bottom: 1px solid #333;
         }
         
         .card-header h2 {
-            color: #4b367c;
+            color: #bb86fc;
             font-size: 1.5rem;
         }
         
         .card-body {
             padding: 20px;
+            color: #e0e0e0;
         }
         
         /* Album Card Styles */
@@ -101,27 +103,29 @@
         .album-card {
             border-radius: 10px;
             overflow: hidden;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
             transition: transform 0.3s ease;
-            background: white;
+            background: #252525;
             width: 100%;
             height: 350px;
             display: flex;
             flex-direction: column;
             position: relative;
+            border: 1px solid #333;
         }
         
         .album-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.4);
         }
         
         .album-header {
-            background: linear-gradient(135deg, #4b367c, #2a1b4d);
-            color: white;
+            background: linear-gradient(135deg, #333333, #1a1a1a);
+            color: #ffffff;
             padding: 15px;
             text-align: center;
             position: relative;
+            border-bottom: 1px solid #333;
         }
         
         .album-image-container {
@@ -132,6 +136,7 @@
             padding: 15px;
             position: relative;
             overflow: hidden;
+            background-color: #121212;
         }
         
         .album-image {
@@ -147,7 +152,7 @@
         }
         
         .download-btn {
-            background: linear-gradient(135deg, #4b367c, #2a1b4d);
+            background: linear-gradient(135deg, #333333, #1a1a1a);
             color: white;
             border: none;
             padding: 10px;
@@ -155,10 +160,12 @@
             font-weight: bold;
             transition: opacity 0.3s;
             width: 100%;
+            border-top: 1px solid #333;
         }
         
         .download-btn:hover {
             opacity: 0.9;
+            background: linear-gradient(135deg, #3a3a3a, #222222);
         }
         
         .download-btn i {
@@ -175,8 +182,8 @@
         }
         
         .action-btn {
-            background: rgba(255,255,255,0.8);
-            border: none;
+            background: rgba(30,30,30,0.8);
+            border: 1px solid #444;
             width: 30px;
             height: 30px;
             border-radius: 50%;
@@ -185,37 +192,39 @@
             justify-content: center;
             cursor: pointer;
             transition: all 0.3s;
+            color: #bb86fc;
         }
         
         .action-btn:hover {
-            background: white;
+            background: #333;
             transform: scale(1.1);
         }
         
         /* Add Album Button */
         .add-album-card {
-            border: 2px dashed #4b367c;
+            border: 2px dashed #bb86fc;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             cursor: pointer;
             transition: all 0.3s ease;
+            background-color: #252525;
         }
         
         .add-album-card:hover {
-            background-color: #f0e6ff;
-            border-color: #2a1b4d;
+            background-color: #333333;
+            border-color: #9a67ea;
         }
         
         .add-album-icon {
             font-size: 48px;
-            color: #4b367c;
+            color: #bb86fc;
             margin-bottom: 15px;
         }
         
         .add-album-text {
-            color: #4b367c;
+            color: #bb86fc;
             font-weight: bold;
         }
         
@@ -229,23 +238,30 @@
         #searchInput {
             flex: 1;
             padding: 10px;
-            border: 1px solid #ddd;
+            border: 1px solid #333;
             border-radius: 5px;
             font-size: 16px;
+            background-color: #252525;
+            color: #e0e0e0;
+        }
+        
+        #searchInput::placeholder {
+            color: #777;
         }
         
         .filter-btn {
             padding: 8px 15px;
-            background: #f0f0f0;
+            background: #333;
             border: none;
             border-radius: 5px;
             cursor: pointer;
             transition: all 0.3s;
+            color: #e0e0e0;
         }
         
         .filter-btn.active {
-            background: #4b367c;
-            color: white;
+            background: #bb86fc;
+            color: #000;
         }
         
         /* Loading Spinner */
@@ -258,7 +274,7 @@
         .spinner {
             border: 4px solid rgba(0,0,0,0.1);
             border-radius: 50%;
-            border-top: 4px solid #4b367c;
+            border-top: 4px solid #bb86fc;
             width: 30px;
             height: 30px;
             animation: spin 1s linear infinite;
@@ -275,7 +291,7 @@
             text-align: center;
             grid-column: 1 / -1;
             padding: 20px;
-            color: #666;
+            color: #777;
         }
         
         /* Modals */
@@ -286,24 +302,26 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.7);
+            background: rgba(0,0,0,0.8);
             z-index: 1000;
             align-items: center;
             justify-content: center;
         }
         
         .modal-content {
-            background: white;
+            background: #252525;
             padding: 20px;
             border-radius: 10px;
             max-width: 500px;
             width: 90%;
+            border: 1px solid #333;
         }
         
         .close-modal {
             float: right;
             font-size: 24px;
             cursor: pointer;
+            color: #bb86fc;
         }
         
         /* Share Buttons */
@@ -344,19 +362,20 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.7);
+            background: rgba(0,0,0,0.8);
             z-index: 1000;
             align-items: center;
             justify-content: center;
         }
         
         .delete-modal-content {
-            background: white;
+            background: #252525;
             padding: 20px;
             border-radius: 10px;
             max-width: 400px;
             width: 90%;
             text-align: center;
+            border: 1px solid #333;
         }
         
         .delete-buttons {
@@ -386,11 +405,12 @@
         
         /* Footer */
         footer {
-            background-color: #2a1b4d;
-            color: white;
+            background-color: #1a1a1a;
+            color: #bb86fc;
             text-align: center;
             padding: 20px;
             margin-top: 30px;
+            border-top: 1px solid #333;
         }
         
         .footer-content p {
@@ -405,7 +425,7 @@
         .upload-progress {
             display: none;
             margin-top: 10px;
-            color: #4b367c;
+            color: #bb86fc;
             font-size: 14px;
         }
     </style>
@@ -980,7 +1000,7 @@
                     album.scrollIntoView({ behavior: 'smooth' });
                     
                     // Highlight the album temporarily
-                    album.style.boxShadow = '0 0 0 3px rgba(75, 54, 124, 0.5)';
+                    album.style.boxShadow = '0 0 0 3px rgba(187, 134, 252, 0.5)';
                     setTimeout(() => {
                         album.style.boxShadow = '';
                     }, 3000);
