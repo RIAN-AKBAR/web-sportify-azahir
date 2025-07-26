@@ -4,11 +4,93 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Album - Azzahir</title>
-    <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
     <style>
-        /* Album Card Styles with Fixed Aspect Ratio */
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        
+        .hero {
+            background: linear-gradient(135deg, #4b367c, #2a1b4d);
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            margin-bottom: 20px;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .nav {
+            display: flex;
+            justify-content: center;
+            background-color: white;
+            padding: 15px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+        
+        .nav a {
+            color: #4b367c;
+            text-decoration: none;
+            padding: 10px 20px;
+            margin: 0 10px;
+            border-radius: 5px;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+        
+        .nav a:hover {
+            background-color: #f0e6ff;
+        }
+        
+        .nav a.active {
+            background-color: #4b367c;
+            color: white;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+            overflow: hidden;
+        }
+        
+        .card-header {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .card-header h2 {
+            color: #4b367c;
+            font-size: 1.5rem;
+        }
+        
+        .card-body {
+            padding: 20px;
+        }
+        
+        /* Album Card Styles */
         .album-container {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -22,11 +104,10 @@
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
             transition: transform 0.3s ease;
             background: white;
-            width: 250px; /* Fixed width */
-            height: 350px; /* Fixed height for consistent aspect ratio */
+            width: 100%;
+            height: 350px;
             display: flex;
             flex-direction: column;
-            margin: 0 auto;
             position: relative;
         }
         
@@ -56,7 +137,7 @@
         .album-image {
             width: 100%;
             height: 100%;
-            object-fit: contain; /* Maintain aspect ratio */
+            object-fit: contain;
             border-radius: 5px;
             transition: transform 0.3s ease;
         }
@@ -84,41 +165,7 @@
             margin-right: 8px;
         }
         
-        /* New Styles for Additional Features */
-        .search-container {
-            margin-bottom: 20px;
-            display: flex;
-            gap: 10px;
-        }
-        
-        #searchInput {
-            flex: 1;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 16px;
-        }
-        
-        .filter-buttons {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-        
-        .filter-btn {
-            padding: 8px 15px;
-            background: #f0f0f0;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        
-        .filter-btn.active {
-            background: #4b367c;
-            color: white;
-        }
-        
+        /* Album Actions */
         .album-actions {
             position: absolute;
             top: 10px;
@@ -145,6 +192,93 @@
             transform: scale(1.1);
         }
         
+        /* Add Album Button */
+        .add-album-card {
+            border: 2px dashed #4b367c;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .add-album-card:hover {
+            background-color: #f0e6ff;
+            border-color: #2a1b4d;
+        }
+        
+        .add-album-icon {
+            font-size: 48px;
+            color: #4b367c;
+            margin-bottom: 15px;
+        }
+        
+        .add-album-text {
+            color: #4b367c;
+            font-weight: bold;
+        }
+        
+        /* Search and Filter */
+        .search-container {
+            margin-bottom: 20px;
+            display: flex;
+            gap: 10px;
+        }
+        
+        #searchInput {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        
+        .filter-btn {
+            padding: 8px 15px;
+            background: #f0f0f0;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .filter-btn.active {
+            background: #4b367c;
+            color: white;
+        }
+        
+        /* Loading Spinner */
+        .loading-spinner {
+            display: none;
+            text-align: center;
+            margin: 20px 0;
+        }
+        
+        .spinner {
+            border: 4px solid rgba(0,0,0,0.1);
+            border-radius: 50%;
+            border-top: 4px solid #4b367c;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* No Results Message */
+        .no-results {
+            text-align: center;
+            grid-column: 1 / -1;
+            padding: 20px;
+            color: #666;
+        }
+        
+        /* Modals */
         .modal {
             display: none;
             position: fixed;
@@ -172,6 +306,7 @@
             cursor: pointer;
         }
         
+        /* Share Buttons */
         .share-buttons {
             display: flex;
             gap: 10px;
@@ -184,6 +319,9 @@
             color: white;
             border: none;
             cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
         }
         
         .share-whatsapp {
@@ -198,32 +336,77 @@
             background: #1DA1F2;
         }
         
-        .loading-spinner {
+        /* Delete Confirmation Modal */
+        .delete-modal {
             display: none;
-            text-align: center;
-            margin: 20px 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
         }
         
-        .spinner {
-            border: 4px solid rgba(0,0,0,0.1);
-            border-radius: 50%;
-            border-top: 4px solid #4b367c;
-            width: 30px;
-            height: 30px;
-            animation: spin 1s linear infinite;
-            margin: 0 auto;
-        }
-        
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        
-        .no-results {
-            text-align: center;
-            grid-column: 1 / -1;
+        .delete-modal-content {
+            background: white;
             padding: 20px;
-            color: #666;
+            border-radius: 10px;
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+        }
+        
+        .delete-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .delete-confirm-btn {
+            padding: 8px 20px;
+            background: #e74c3c;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        .delete-cancel-btn {
+            padding: 8px 20px;
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #2a1b4d;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+        }
+        
+        .footer-content p {
+            margin: 0;
+        }
+        
+        /* Hidden Elements */
+        #imageUpload {
+            display: none;
+        }
+        
+        .upload-progress {
+            display: none;
+            margin-top: 10px;
+            color: #4b367c;
+            font-size: 14px;
         }
     </style>
 </head>
@@ -245,7 +428,7 @@
                 <h2><i class="fas fa-music"></i> Koleksi Album</h2>
             </div>
             <div class="card-body">
-                <p>Klik tombol download untuk menyimpan card album</p>
+                <p>Klik tombol download untuk menyimpan card album. Klik "Tambah Album" untuk menambahkan album baru.</p>
                 
                 <!-- Search and Filter Section -->
                 <div class="search-container">
@@ -254,13 +437,19 @@
                     <button class="filter-btn" onclick="filterAlbums('favorite')">Favorit</button>
                 </div>
                 
+                <!-- Hidden file input for image upload -->
+                <input type="file" id="imageUpload" accept="image/*">
+                <div class="upload-progress" id="uploadProgress">
+                    <i class="fas fa-spinner fa-spin"></i> Mengunggah gambar...
+                </div>
+                
                 <div class="loading-spinner" id="loadingSpinner">
                     <div class="spinner"></div>
                     <p>Memuat album...</p>
                 </div>
                 
                 <div class="album-container" id="albumContainer">
-                    <!-- Album 1 -->
+                    <!-- Default Albums (1-6) -->
                     <div class="album-card" id="album1" data-title="Album 1" data-favorite="false">
                         <div class="album-actions">
                             <button class="action-btn" onclick="toggleFavorite('album1')">
@@ -268,6 +457,9 @@
                             </button>
                             <button class="action-btn" onclick="shareAlbum('album1')">
                                 <i class="fas fa-share-alt"></i>
+                            </button>
+                            <button class="action-btn" onclick="showDeleteModal('album1')">
+                                <i class="fas fa-trash"></i>
                             </button>
                         </div>
                         <div class="album-header">
@@ -281,7 +473,6 @@
                         </button>
                     </div>
                     
-                    <!-- Album 2 -->
                     <div class="album-card" id="album2" data-title="Album 2" data-favorite="false">
                         <div class="album-actions">
                             <button class="action-btn" onclick="toggleFavorite('album2')">
@@ -289,6 +480,9 @@
                             </button>
                             <button class="action-btn" onclick="shareAlbum('album2')">
                                 <i class="fas fa-share-alt"></i>
+                            </button>
+                            <button class="action-btn" onclick="showDeleteModal('album2')">
+                                <i class="fas fa-trash"></i>
                             </button>
                         </div>
                         <div class="album-header">
@@ -302,7 +496,6 @@
                         </button>
                     </div>
                     
-                    <!-- Album 3 -->
                     <div class="album-card" id="album3" data-title="Album 3" data-favorite="false">
                         <div class="album-actions">
                             <button class="action-btn" onclick="toggleFavorite('album3')">
@@ -310,6 +503,9 @@
                             </button>
                             <button class="action-btn" onclick="shareAlbum('album3')">
                                 <i class="fas fa-share-alt"></i>
+                            </button>
+                            <button class="action-btn" onclick="showDeleteModal('album3')">
+                                <i class="fas fa-trash"></i>
                             </button>
                         </div>
                         <div class="album-header">
@@ -323,7 +519,6 @@
                         </button>
                     </div>
                     
-                    <!-- Album 4 -->
                     <div class="album-card" id="album4" data-title="Album 4" data-favorite="false">
                         <div class="album-actions">
                             <button class="action-btn" onclick="toggleFavorite('album4')">
@@ -331,6 +526,9 @@
                             </button>
                             <button class="action-btn" onclick="shareAlbum('album4')">
                                 <i class="fas fa-share-alt"></i>
+                            </button>
+                            <button class="action-btn" onclick="showDeleteModal('album4')">
+                                <i class="fas fa-trash"></i>
                             </button>
                         </div>
                         <div class="album-header">
@@ -344,7 +542,6 @@
                         </button>
                     </div>
                     
-                    <!-- Album 5 -->
                     <div class="album-card" id="album5" data-title="Album 5" data-favorite="false">
                         <div class="album-actions">
                             <button class="action-btn" onclick="toggleFavorite('album5')">
@@ -352,6 +549,9 @@
                             </button>
                             <button class="action-btn" onclick="shareAlbum('album5')">
                                 <i class="fas fa-share-alt"></i>
+                            </button>
+                            <button class="action-btn" onclick="showDeleteModal('album5')">
+                                <i class="fas fa-trash"></i>
                             </button>
                         </div>
                         <div class="album-header">
@@ -365,7 +565,6 @@
                         </button>
                     </div>
                     
-                    <!-- Album 6 -->
                     <div class="album-card" id="album6" data-title="Album 6" data-favorite="false">
                         <div class="album-actions">
                             <button class="action-btn" onclick="toggleFavorite('album6')">
@@ -373,6 +572,9 @@
                             </button>
                             <button class="action-btn" onclick="shareAlbum('album6')">
                                 <i class="fas fa-share-alt"></i>
+                            </button>
+                            <button class="action-btn" onclick="showDeleteModal('album6')">
+                                <i class="fas fa-trash"></i>
                             </button>
                         </div>
                         <div class="album-header">
@@ -384,6 +586,14 @@
                         <button class="download-btn" onclick="downloadCard('album6')">
                             <i class="fas fa-download"></i> Download Card
                         </button>
+                    </div>
+                    
+                    <!-- Add Album Button -->
+                    <div class="album-card add-album-card" onclick="document.getElementById('imageUpload').click()">
+                        <div class="album-image-container">
+                            <i class="fas fa-plus-circle add-album-icon"></i>
+                            <div class="add-album-text">Tambah Album</div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -410,6 +620,19 @@
         </div>
     </div>
     
+    <!-- Delete Confirmation Modal -->
+    <div class="delete-modal" id="deleteModal">
+        <div class="delete-modal-content">
+            <span class="close-modal" onclick="closeDeleteModal()">&times;</span>
+            <h3>Hapus Album</h3>
+            <p>Apakah Anda yakin ingin menghapus album ini?</p>
+            <div class="delete-buttons">
+                <button class="delete-confirm-btn" onclick="confirmDelete()">Ya, Hapus</button>
+                <button class="delete-cancel-btn" onclick="closeDeleteModal()">Batal</button>
+            </div>
+        </div>
+    </div>
+    
     <footer>
         <div class="footer-content">
             <p>&copy; 2025 Album Sholawat Azzahir. Dev: Muhammad Rian Akbar.</p>
@@ -417,8 +640,9 @@
     </footer>
 
     <script>
-        // Current album being shared
+        // Current album being shared or deleted
         let currentSharedAlbum = null;
+        let currentAlbumToDelete = null;
         
         // Show loading spinner
         function showLoading() {
@@ -481,7 +705,7 @@
         
         // Filter albums
         function filterAlbums(filter) {
-            const albums = document.querySelectorAll('.album-card');
+            const albums = document.querySelectorAll('.album-card:not(.add-album-card)');
             const searchTerm = document.getElementById('searchInput').value.toLowerCase();
             
             albums.forEach(album => {
@@ -510,7 +734,7 @@
             event.target.classList.add('active');
             
             // Show no results message if needed
-            const visibleAlbums = document.querySelectorAll('.album-card[style*="flex"]').length;
+            const visibleAlbums = document.querySelectorAll('.album-card:not(.add-album-card)[style*="flex"]').length;
             let noResults = document.getElementById('noResults');
             
             if (visibleAlbums === 0) {
@@ -583,9 +807,171 @@
             filterAlbums(document.querySelector('.filter-btn.active').textContent.toLowerCase());
         });
         
+        // Handle image upload and create new album
+        document.getElementById('imageUpload').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (!file) return;
+            
+            // Show upload progress
+            document.getElementById('uploadProgress').style.display = 'block';
+            
+            // Create a new album card with the uploaded image
+            createAlbumCard(file);
+            
+            // Reset file input
+            e.target.value = '';
+        });
+        
+        // Create a new album card
+        function createAlbumCard(imageFile) {
+            const reader = new FileReader();
+            
+            reader.onload = function(e) {
+                const imageUrl = e.target.result;
+                const albumContainer = document.getElementById('albumContainer');
+                const addAlbumCard = document.querySelector('.add-album-card');
+                
+                // Create a unique ID for the new album
+                const albumId = 'album-' + Date.now();
+                const albumNumber = document.querySelectorAll('.album-card:not(.add-album-card)').length + 1;
+                
+                // Create the new album card HTML
+                const albumCard = document.createElement('div');
+                albumCard.className = 'album-card';
+                albumCard.id = albumId;
+                albumCard.setAttribute('data-title', `Album ${albumNumber}`);
+                albumCard.setAttribute('data-favorite', 'false');
+                albumCard.innerHTML = `
+                    <div class="album-actions">
+                        <button class="action-btn" onclick="toggleFavorite('${albumId}')">
+                            <i class="far fa-heart"></i>
+                        </button>
+                        <button class="action-btn" onclick="shareAlbum('${albumId}')">
+                            <i class="fas fa-share-alt"></i>
+                        </button>
+                        <button class="action-btn" onclick="showDeleteModal('${albumId}')">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                    <div class="album-header">
+                        <h3>Album ${albumNumber}</h3>
+                    </div>
+                    <div class="album-image-container">
+                        <img src="${imageUrl}" class="album-image" alt="Album ${albumNumber}">
+                    </div>
+                    <button class="download-btn" onclick="downloadCard('${albumId}')">
+                        <i class="fas fa-download"></i> Download Card
+                    </button>
+                `;
+                
+                // Insert the new card before the "Add Album" button
+                albumContainer.insertBefore(albumCard, addAlbumCard);
+                
+                // Hide upload progress
+                document.getElementById('uploadProgress').style.display = 'none';
+                
+                // Save to localStorage
+                saveAlbumToLocalStorage(albumId, imageUrl, `Album ${albumNumber}`);
+            };
+            
+            reader.readAsDataURL(imageFile);
+        }
+        
+        // Save album to localStorage
+        function saveAlbumToLocalStorage(albumId, imageUrl, title) {
+            const albums = JSON.parse(localStorage.getItem('userAlbums')) || {};
+            albums[albumId] = {
+                imageUrl: imageUrl,
+                title: title,
+                favorite: false
+            };
+            localStorage.setItem('userAlbums', JSON.stringify(albums));
+        }
+        
+        // Remove album from localStorage
+        function removeAlbumFromLocalStorage(albumId) {
+            const albums = JSON.parse(localStorage.getItem('userAlbums')) || {};
+            delete albums[albumId];
+            localStorage.setItem('userAlbums', JSON.stringify(albums));
+            
+            // Also remove from favorites if it was there
+            const favorites = JSON.parse(localStorage.getItem('albumFavorites')) || {};
+            delete favorites[albumId];
+            localStorage.setItem('albumFavorites', JSON.stringify(favorites));
+        }
+        
+        // Show delete confirmation modal
+        function showDeleteModal(albumId) {
+            currentAlbumToDelete = albumId;
+            document.getElementById('deleteModal').style.display = 'flex';
+        }
+        
+        // Close delete confirmation modal
+        function closeDeleteModal() {
+            document.getElementById('deleteModal').style.display = 'none';
+            currentAlbumToDelete = null;
+        }
+        
+        // Confirm album deletion
+        function confirmDelete() {
+            if (currentAlbumToDelete) {
+                const album = document.getElementById(currentAlbumToDelete);
+                if (album) {
+                    album.remove();
+                    removeAlbumFromLocalStorage(currentAlbumToDelete);
+                }
+                closeDeleteModal();
+            }
+        }
+        
+        // Load user-added albums from localStorage
+        function loadUserAlbums() {
+            const albums = JSON.parse(localStorage.getItem('userAlbums')) || {};
+            const albumContainer = document.getElementById('albumContainer');
+            const addAlbumCard = document.querySelector('.add-album-card');
+            
+            for (const albumId in albums) {
+                const albumData = albums[albumId];
+                
+                // Skip if this is one of our default albums (1-6)
+                if (albumId.match(/^album[1-6]$/)) continue;
+                
+                const albumCard = document.createElement('div');
+                albumCard.className = 'album-card';
+                albumCard.id = albumId;
+                albumCard.setAttribute('data-title', albumData.title);
+                albumCard.setAttribute('data-favorite', albumData.favorite);
+                albumCard.innerHTML = `
+                    <div class="album-actions">
+                        <button class="action-btn" onclick="toggleFavorite('${albumId}')">
+                            <i class="${albumData.favorite ? 'fas' : 'far'} fa-heart"></i>
+                        </button>
+                        <button class="action-btn" onclick="shareAlbum('${albumId}')">
+                            <i class="fas fa-share-alt"></i>
+                        </button>
+                        <button class="action-btn" onclick="showDeleteModal('${albumId}')">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                    <div class="album-header">
+                        <h3>${albumData.title}</h3>
+                    </div>
+                    <div class="album-image-container">
+                        <img src="${albumData.imageUrl}" class="album-image" alt="${albumData.title}">
+                    </div>
+                    <button class="download-btn" onclick="downloadCard('${albumId}')">
+                        <i class="fas fa-download"></i> Download Card
+                    </button>
+                `;
+                
+                albumContainer.insertBefore(albumCard, addAlbumCard);
+            }
+        }
+        
         // Initialize on page load
         window.onload = function() {
             initFavorites();
+            loadUserAlbums();
             
             // Check for hash in URL to scroll to specific album
             if (window.location.hash) {
