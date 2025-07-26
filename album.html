@@ -12,6 +12,8 @@
             background-color: #0f172a;
             color: #e2e8f0;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
         }
         
         .hero {
@@ -128,6 +130,36 @@
             background-color: #dc2626;
         }
         
+        .add-album-card {
+            background-color: #1e293b;
+            border: 2px dashed #7c3aed;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            height: 100%;
+            min-height: 350px;
+        }
+        
+        .add-album-card:hover {
+            background-color: rgba(124, 58, 237, 0.1);
+            border-color: #a855f7;
+        }
+        
+        .add-album-icon {
+            font-size: 48px;
+            color: #7c3aed;
+            margin-bottom: 15px;
+        }
+        
+        .add-album-text {
+            color: #7c3aed;
+            font-size: 1.2rem;
+        }
+        
         /* Modal Styles */
         .modal {
             display: none;
@@ -157,6 +189,19 @@
             gap: 10px;
             margin-top: 20px;
         }
+        
+        /* File Input */
+        #imageUpload {
+            display: none;
+        }
+        
+        /* Upload Progress */
+        .upload-progress {
+            display: none;
+            color: #7c3aed;
+            margin-top: 10px;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -175,6 +220,12 @@
         <div class="card">
             <h2><i class="fas fa-music"></i> Koleksi Album</h2>
             <p>Klik tombol download untuk menyimpan card album</p>
+            
+            <!-- Hidden file input for adding new albums -->
+            <input type="file" id="imageUpload" accept="image/*">
+            <div class="upload-progress" id="uploadProgress">
+                <i class="fas fa-spinner fa-spin"></i> Mengunggah album...
+            </div>
             
             <div class="album-container" id="albumContainer">
                 <!-- Album 1 -->
@@ -284,6 +335,12 @@
                         </button>
                     </div>
                 </div>
+                
+                <!-- Add Album Card -->
+                <div class="add-album-card" onclick="document.getElementById('imageUpload').click()">
+                    <i class="fas fa-plus-circle add-album-icon"></i>
+                    <div class="add-album-text">Tambah Album Baru</div>
+                </div>
             </div>
         </div>
     </div>
@@ -307,6 +364,7 @@
     <script>
         // Variable to store current album to delete
         let albumToDelete = null;
+        let albumCount = 6; // Starting count for new albums
         
         // Download card as image
         function downloadCard(cardId) {
@@ -347,6 +405,62 @@
                 // Here you can add code to remove from localStorage if needed
                 // removeFromLocalStorage(albumId);
             }
+        }
+        
+        // Handle adding new albums
+        document.getElementById('imageUpload').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (!file) return;
+            
+            // Show upload progress
+            document.getElementById('uploadProgress').style.display = 'block';
+            
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                // Create new album
+                createNewAlbum(event.target.result);
+                
+                // Hide upload progress
+                document.getElementById('uploadProgress').style.display = 'none';
+                
+                // Reset file input
+                e.target.value = '';
+            };
+            reader.readAsDataURL(file);
+        });
+        
+        // Create a new album card
+        function createNewAlbum(imageSrc) {
+            albumCount++;
+            const albumId = 'album-' + Date.now();
+            const albumContainer = document.getElementById('albumContainer');
+            const addAlbumCard = document.querySelector('.add-album-card');
+            
+            const newAlbum = document.createElement('div');
+            newAlbum.className = 'album-card';
+            newAlbum.id = albumId;
+            newAlbum.innerHTML = `
+                <div class="album-header">
+                    <h3>Album ${albumCount}</h3>
+                </div>
+                <div class="album-image-container">
+                    <img src="${imageSrc}" class="album-image" alt="Album ${albumCount}">
+                </div>
+                <div class="album-actions">
+                    <button class="action-btn" onclick="downloadCard('${albumId}')">
+                        <i class="fas fa-download"></i> Download
+                    </button>
+                    <button class="action-btn delete-btn" onclick="confirmDelete('${albumId}')">
+                        <i class="fas fa-trash"></i> Hapus
+                    </button>
+                </div>
+            `;
+            
+            // Insert before the add album card
+            albumContainer.insertBefore(newAlbum, addAlbumCard);
+            
+            // Here you can add code to save to localStorage if needed
+            // saveToLocalStorage(albumId, imageSrc, albumCount);
         }
     </script>
 </body>
