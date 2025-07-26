@@ -3,121 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Album Sholawat Azzahir</title>
+    <title>Album - Azzahir</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
     <style>
-        /* Global Styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
-        }
-        
+        /* Dark Theme Styles */
         body {
             background-color: #0f172a;
             color: #e2e8f0;
-            line-height: 1.6;
-        }
-        
-        @font-face {
-            font-family: 'Poppins';
-            src: url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         
         .hero {
             background: linear-gradient(135deg, #1e293b, #0f172a);
-            color: #f8fafc;
+            color: white;
+            padding: 30px;
             text-align: center;
-            padding: 40px 20px;
-            margin-bottom: 20px;
             border-bottom: 1px solid #1e293b;
-        }
-        
-        .hero h1 {
-            font-size: 2.8rem;
-            margin-bottom: 10px;
-            font-weight: 700;
-            background: linear-gradient(to right, #7c3aed, #a855f7);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        
-        .hero p {
-            font-size: 1.2rem;
-            opacity: 0.9;
         }
         
         .nav {
             display: flex;
             justify-content: center;
             background-color: #1e293b;
-            padding: 15px 0;
-            margin-bottom: 30px;
-            border-bottom: 1px solid #334155;
+            padding: 15px;
+            margin-bottom: 20px;
         }
         
         .nav a {
-            color: #cbd5e1;
+            color: #94a3b8;
             text-decoration: none;
-            padding: 10px 25px;
-            margin: 0 5px;
-            border-radius: 8px;
+            padding: 10px 20px;
+            margin: 0 10px;
+            border-radius: 5px;
             transition: all 0.3s;
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        .nav a:hover {
-            background-color: #334155;
-            color: #e2e8f0;
         }
         
         .nav a.active {
             background-color: #7c3aed;
             color: white;
-            box-shadow: 0 4px 6px rgba(124, 58, 237, 0.3);
         }
         
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 20px;
         }
         
         .card {
             background-color: #1e293b;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            padding: 20px;
             margin-bottom: 30px;
-            overflow: hidden;
             border: 1px solid #334155;
         }
         
-        .card-header {
-            background-color: #1e293b;
-            padding: 20px;
-            border-bottom: 1px solid #334155;
-        }
-        
-        .card-header h2 {
-            color: #a855f7;
-            font-size: 1.5rem;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .card-body {
-            padding: 20px;
-            color: #e2e8f0;
-        }
-        
-        /* Album Card Styles */
         .album-container {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -126,225 +66,69 @@
         }
         
         .album-card {
-            border-radius: 12px;
+            background-color: #1e293b;
+            border-radius: 10px;
             overflow: hidden;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-            transition: all 0.3s ease;
-            background: #1e293b;
-            width: 100%;
-            height: 350px;
-            display: flex;
-            flex-direction: column;
-            position: relative;
             border: 1px solid #334155;
-        }
-        
-        .album-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.3);
-            border-color: #7c3aed;
+            transition: all 0.3s;
         }
         
         .album-header {
-            background: linear-gradient(135deg, #7c3aed, #a855f7);
+            background: linear-gradient(135deg, #7c3aed, #9333ea);
             color: white;
             padding: 15px;
             text-align: center;
-            position: relative;
-            border-bottom: 1px solid #334155;
-        }
-        
-        .album-header h3 {
-            font-weight: 600;
-            font-size: 1.2rem;
         }
         
         .album-image-container {
-            flex: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
             padding: 15px;
-            position: relative;
-            overflow: hidden;
             background-color: #0f172a;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 200px;
         }
         
         .album-image {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            border-radius: 8px;
-            transition: transform 0.3s ease;
+            max-width: 100%;
+            max-height: 100%;
+            border-radius: 5px;
         }
         
-        .album-image:hover {
-            transform: scale(1.05);
-        }
-        
-        .download-btn {
-            background: linear-gradient(135deg, #7c3aed, #a855f7);
-            color: white;
-            border: none;
-            padding: 12px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s;
-            width: 100%;
-            border-top: 1px solid #334155;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
-        
-        .download-btn:hover {
-            opacity: 0.9;
-            background: linear-gradient(135deg, #6d28d9, #9333ea);
-        }
-        
-        /* Album Actions */
         .album-actions {
-            position: absolute;
-            top: 10px;
-            right: 10px;
             display: flex;
-            gap: 8px;
+            justify-content: space-between;
+            padding: 10px;
+            background-color: #1e293b;
+            border-top: 1px solid #334155;
         }
         
         .action-btn {
-            background: rgba(30, 41, 59, 0.8);
-            border: 1px solid #475569;
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            background-color: #334155;
+            border: none;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 5px;
             cursor: pointer;
             transition: all 0.3s;
-            color: #a855f7;
-            backdrop-filter: blur(5px);
+            display: flex;
+            align-items: center;
+            gap: 5px;
         }
         
         .action-btn:hover {
-            background: #7c3aed;
-            color: white;
-            transform: scale(1.1);
-            border-color: #7c3aed;
+            background-color: #475569;
         }
         
-        /* Add Album Button */
-        .add-album-card {
-            border: 2px dashed #7c3aed;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            background-color: rgba(30, 41, 59, 0.5);
+        .delete-btn {
+            background-color: #ef4444;
         }
         
-        .add-album-card:hover {
-            background-color: rgba(124, 58, 237, 0.1);
-            border-color: #a855f7;
+        .delete-btn:hover {
+            background-color: #dc2626;
         }
         
-        .add-album-icon {
-            font-size: 48px;
-            color: #7c3aed;
-            margin-bottom: 15px;
-            transition: all 0.3s;
-        }
-        
-        .add-album-text {
-            color: #7c3aed;
-            font-weight: 600;
-            font-size: 1.1rem;
-        }
-        
-        /* Search and Filter */
-        .search-container {
-            margin-bottom: 20px;
-            display: flex;
-            gap: 10px;
-        }
-        
-        #searchInput {
-            flex: 1;
-            padding: 12px 15px;
-            border: 1px solid #334155;
-            border-radius: 8px;
-            font-size: 16px;
-            background-color: #1e293b;
-            color: #e2e8f0;
-            transition: all 0.3s;
-        }
-        
-        #searchInput:focus {
-            outline: none;
-            border-color: #7c3aed;
-            box-shadow: 0 0 0 2px rgba(124, 58, 237, 0.3);
-        }
-        
-        #searchInput::placeholder {
-            color: #64748b;
-        }
-        
-        .filter-btn {
-            padding: 10px 20px;
-            background: #334155;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s;
-            color: #e2e8f0;
-            font-weight: 500;
-        }
-        
-        .filter-btn:hover {
-            background: #475569;
-        }
-        
-        .filter-btn.active {
-            background: #7c3aed;
-            color: white;
-            box-shadow: 0 4px 6px rgba(124, 58, 237, 0.3);
-        }
-        
-        /* Loading Spinner */
-        .loading-spinner {
-            display: none;
-            text-align: center;
-            margin: 20px 0;
-        }
-        
-        .spinner {
-            border: 4px solid rgba(30, 41, 59, 0.2);
-            border-radius: 50%;
-            border-top: 4px solid #7c3aed;
-            width: 40px;
-            height: 40px;
-            animation: spin 1s linear infinite;
-            margin: 0 auto;
-        }
-        
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        
-        /* No Results Message */
-        .no-results {
-            text-align: center;
-            grid-column: 1 / -1;
-            padding: 30px;
-            color: #94a3b8;
-            font-size: 1.1rem;
-        }
-        
-        /* Modals */
+        /* Modal Styles */
         .modal {
             display: none;
             position: fixed;
@@ -352,212 +136,33 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(15, 23, 42, 0.9);
+            background-color: rgba(15, 23, 42, 0.8);
             z-index: 1000;
-            align-items: center;
             justify-content: center;
-            backdrop-filter: blur(5px);
+            align-items: center;
         }
         
         .modal-content {
-            background: #1e293b;
-            padding: 25px;
-            border-radius: 12px;
-            max-width: 500px;
-            width: 90%;
-            border: 1px solid #334155;
-            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.3);
-        }
-        
-        .modal-content h3 {
-            color: #a855f7;
-            margin-bottom: 15px;
-            font-size: 1.4rem;
-        }
-        
-        .modal-content p {
-            color: #e2e8f0;
-            margin-bottom: 20px;
-        }
-        
-        .close-modal {
-            float: right;
-            font-size: 24px;
-            cursor: pointer;
-            color: #a855f7;
-            transition: all 0.3s;
-        }
-        
-        .close-modal:hover {
-            color: #7c3aed;
-            transform: scale(1.1);
-        }
-        
-        /* Share Buttons */
-        .share-buttons {
-            display: flex;
-            gap: 12px;
-            margin-top: 20px;
-            flex-wrap: wrap;
-        }
-        
-        .share-btn {
-            padding: 10px 20px;
-            border-radius: 8px;
-            color: white;
-            border: none;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-weight: 500;
-            transition: all 0.3s;
-            flex: 1;
-            justify-content: center;
-        }
-        
-        .share-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-        }
-        
-        .share-whatsapp {
-            background: #25D366;
-        }
-        
-        .share-facebook {
-            background: #3b5998;
-        }
-        
-        .share-twitter {
-            background: #1DA1F2;
-        }
-        
-        /* Delete Confirmation Modal */
-        .delete-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(15, 23, 42, 0.9);
-            z-index: 1000;
-            align-items: center;
-            justify-content: center;
-            backdrop-filter: blur(5px);
-        }
-        
-        .delete-modal-content {
-            background: #1e293b;
-            padding: 25px;
-            border-radius: 12px;
-            max-width: 400px;
-            width: 90%;
-            text-align: center;
-            border: 1px solid #334155;
-            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.3);
-        }
-        
-        .delete-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-top: 25px;
-        }
-        
-        .delete-confirm-btn {
-            padding: 10px 25px;
-            background: #ef4444;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: 500;
-            transition: all 0.3s;
-        }
-        
-        .delete-confirm-btn:hover {
-            background: #dc2626;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 6px rgba(239, 68, 68, 0.3);
-        }
-        
-        .delete-cancel-btn {
-            padding: 10px 25px;
-            background: #334155;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: 500;
-            transition: all 0.3s;
-        }
-        
-        .delete-cancel-btn:hover {
-            background: #475569;
-            transform: translateY(-2px);
-        }
-        
-        /* Footer */
-        footer {
             background-color: #1e293b;
-            color: #a855f7;
-            text-align: center;
-            padding: 25px;
-            margin-top: 50px;
-            border-top: 1px solid #334155;
+            padding: 20px;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 400px;
+            border: 1px solid #334155;
         }
         
-        .footer-content p {
-            margin: 0;
-            font-size: 0.9rem;
-        }
-        
-        /* Hidden Elements */
-        #imageUpload {
-            display: none;
-        }
-        
-        .upload-progress {
-            display: none;
-            margin-top: 10px;
-            color: #7c3aed;
-            font-size: 14px;
+        .modal-actions {
             display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        /* Responsive Adjustments */
-        @media (max-width: 768px) {
-            .album-container {
-                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            }
-            
-            .nav {
-                flex-wrap: wrap;
-            }
-            
-            .nav a {
-                padding: 8px 15px;
-                font-size: 0.9rem;
-            }
-            
-            .hero h1 {
-                font-size: 2rem;
-            }
-            
-            .share-buttons {
-                flex-direction: column;
-            }
+            justify-content: flex-end;
+            gap: 10px;
+            margin-top: 20px;
         }
     </style>
 </head>
 <body>
     <div class="hero">
-        <h1 class="awal">Album Sholawat Azzahir</h1>
-        <p class="tagline">Koleksi Terbaik Sholawat Nabawi</p>
+        <h1>Album Azzahir</h1>
+        <p>Koleksi Lengkap Sholawat Digital</p>
     </div>
     
     <div class="nav">
@@ -568,569 +173,181 @@
     
     <div class="container">
         <div class="card">
-            <div class="card-header">
-                <h2><i class="fas fa-music"></i> Koleksi Album</h2>
-            </div>
-            <div class="card-body">
-                <p>Klik tombol download untuk menyimpan card album. Klik "Tambah Album" untuk menambahkan album baru.</p>
-                
-                <!-- Search and Filter Section -->
-                <div class="search-container">
-                    <input type="text" id="searchInput" placeholder="Cari album...">
-                    <button class="filter-btn active" onclick="filterAlbums('all')">Semua</button>
-                    <button class="filter-btn" onclick="filterAlbums('favorite')">Favorit</button>
+            <h2><i class="fas fa-music"></i> Koleksi Album</h2>
+            <p>Klik tombol download untuk menyimpan card album</p>
+            
+            <div class="album-container" id="albumContainer">
+                <!-- Album 1 -->
+                <div class="album-card" id="album1">
+                    <div class="album-header">
+                        <h3>Album 1</h3>
+                    </div>
+                    <div class="album-image-container">
+                        <img src="foto 1.png" class="album-image" alt="Album 1">
+                    </div>
+                    <div class="album-actions">
+                        <button class="action-btn" onclick="downloadCard('album1')">
+                            <i class="fas fa-download"></i> Download
+                        </button>
+                        <button class="action-btn delete-btn" onclick="confirmDelete('album1')">
+                            <i class="fas fa-trash"></i> Hapus
+                        </button>
+                    </div>
                 </div>
                 
-                <!-- Hidden file input for image upload -->
-                <input type="file" id="imageUpload" accept="image/*">
-                <div class="upload-progress" id="uploadProgress">
-                    <i class="fas fa-spinner fa-spin"></i> Mengunggah gambar...
+                <!-- Album 2 -->
+                <div class="album-card" id="album2">
+                    <div class="album-header">
+                        <h3>Album 2</h3>
+                    </div>
+                    <div class="album-image-container">
+                        <img src="foto 2.png" class="album-image" alt="Album 2">
+                    </div>
+                    <div class="album-actions">
+                        <button class="action-btn" onclick="downloadCard('album2')">
+                            <i class="fas fa-download"></i> Download
+                        </button>
+                        <button class="action-btn delete-btn" onclick="confirmDelete('album2')">
+                            <i class="fas fa-trash"></i> Hapus
+                        </button>
+                    </div>
                 </div>
                 
-                <div class="loading-spinner" id="loadingSpinner">
-                    <div class="spinner"></div>
-                    <p>Memuat album...</p>
+                <!-- Album 3 -->
+                <div class="album-card" id="album3">
+                    <div class="album-header">
+                        <h3>Album 3</h3>
+                    </div>
+                    <div class="album-image-container">
+                        <img src="foto 3.png" class="album-image" alt="Album 3">
+                    </div>
+                    <div class="album-actions">
+                        <button class="action-btn" onclick="downloadCard('album3')">
+                            <i class="fas fa-download"></i> Download
+                        </button>
+                        <button class="action-btn delete-btn" onclick="confirmDelete('album3')">
+                            <i class="fas fa-trash"></i> Hapus
+                        </button>
+                    </div>
                 </div>
                 
-                <div class="album-container" id="albumContainer">
-                    <!-- Default Albums (1-6) -->
-                    <div class="album-card" id="album1" data-title="Album 1" data-favorite="false">
-                        <div class="album-actions">
-                            <button class="action-btn" onclick="toggleFavorite('album1')">
-                                <i class="far fa-heart"></i>
-                            </button>
-                            <button class="action-btn" onclick="shareAlbum('album1')">
-                                <i class="fas fa-share-alt"></i>
-                            </button>
-                            <button class="action-btn" onclick="showDeleteModal('album1')">
-                                <i class="fas fa-trash"></i>
-                            </button>
-                        </div>
-                        <div class="album-header">
-                            <h3>Album 1</h3>
-                        </div>
-                        <div class="album-image-container">
-                            <img src="foto 1.png" class="album-image" alt="Album 1">
-                        </div>
-                        <button class="download-btn" onclick="downloadCard('album1')">
-                            <i class="fas fa-download"></i> Download Card
-                        </button>
+                <!-- Album 4 -->
+                <div class="album-card" id="album4">
+                    <div class="album-header">
+                        <h3>Album 4</h3>
                     </div>
-                    
-                    <div class="album-card" id="album2" data-title="Album 2" data-favorite="false">
-                        <div class="album-actions">
-                            <button class="action-btn" onclick="toggleFavorite('album2')">
-                                <i class="far fa-heart"></i>
-                            </button>
-                            <button class="action-btn" onclick="shareAlbum('album2')">
-                                <i class="fas fa-share-alt"></i>
-                            </button>
-                            <button class="action-btn" onclick="showDeleteModal('album2')">
-                                <i class="fas fa-trash"></i>
-                            </button>
-                        </div>
-                        <div class="album-header">
-                            <h3>Album 2</h3>
-                        </div>
-                        <div class="album-image-container">
-                            <img src="foto 2.png" class="album-image" alt="Album 2">
-                        </div>
-                        <button class="download-btn" onclick="downloadCard('album2')">
-                            <i class="fas fa-download"></i> Download Card
-                        </button>
+                    <div class="album-image-container">
+                        <img src="foto 4.png" class="album-image" alt="Album 4">
                     </div>
-                    
-                    <div class="album-card" id="album3" data-title="Album 3" data-favorite="false">
-                        <div class="album-actions">
-                            <button class="action-btn" onclick="toggleFavorite('album3')">
-                                <i class="far fa-heart"></i>
-                            </button>
-                            <button class="action-btn" onclick="shareAlbum('album3')">
-                                <i class="fas fa-share-alt"></i>
-                            </button>
-                            <button class="action-btn" onclick="showDeleteModal('album3')">
-                                <i class="fas fa-trash"></i>
-                            </button>
-                        </div>
-                        <div class="album-header">
-                            <h3>Album 3</h3>
-                        </div>
-                        <div class="album-image-container">
-                            <img src="foto 3.png" class="album-image" alt="Album 3">
-                        </div>
-                        <button class="download-btn" onclick="downloadCard('album3')">
-                            <i class="fas fa-download"></i> Download Card
+                    <div class="album-actions">
+                        <button class="action-btn" onclick="downloadCard('album4')">
+                            <i class="fas fa-download"></i> Download
                         </button>
-                    </div>
-                    
-                    <div class="album-card" id="album4" data-title="Album 4" data-favorite="false">
-                        <div class="album-actions">
-                            <button class="action-btn" onclick="toggleFavorite('album4')">
-                                <i class="far fa-heart"></i>
-                            </button>
-                            <button class="action-btn" onclick="shareAlbum('album4')">
-                                <i class="fas fa-share-alt"></i>
-                            </button>
-                            <button class="action-btn" onclick="showDeleteModal('album4')">
-                                <i class="fas fa-trash"></i>
-                            </button>
-                        </div>
-                        <div class="album-header">
-                            <h3>Album 4</h3>
-                        </div>
-                        <div class="album-image-container">
-                            <img src="foto 4.png" class="album-image" alt="Album 4">
-                        </div>
-                        <button class="download-btn" onclick="downloadCard('album4')">
-                            <i class="fas fa-download"></i> Download Card
+                        <button class="action-btn delete-btn" onclick="confirmDelete('album4')">
+                            <i class="fas fa-trash"></i> Hapus
                         </button>
-                    </div>
-                    
-                    <div class="album-card" id="album5" data-title="Album 5" data-favorite="false">
-                        <div class="album-actions">
-                            <button class="action-btn" onclick="toggleFavorite('album5')">
-                                <i class="far fa-heart"></i>
-                            </button>
-                            <button class="action-btn" onclick="shareAlbum('album5')">
-                                <i class="fas fa-share-alt"></i>
-                            </button>
-                            <button class="action-btn" onclick="showDeleteModal('album5')">
-                                <i class="fas fa-trash"></i>
-                            </button>
-                        </div>
-                        <div class="album-header">
-                            <h3>Album 5</h3>
-                        </div>
-                        <div class="album-image-container">
-                            <img src="foto 5.png" class="album-image" alt="Album 5">
-                        </div>
-                        <button class="download-btn" onclick="downloadCard('album5')">
-                            <i class="fas fa-download"></i> Download Card
-                        </button>
-                    </div>
-                    
-                    <div class="album-card" id="album6" data-title="Album 6" data-favorite="false">
-                        <div class="album-actions">
-                            <button class="action-btn" onclick="toggleFavorite('album6')">
-                                <i class="far fa-heart"></i>
-                            </button>
-                            <button class="action-btn" onclick="shareAlbum('album6')">
-                                <i class="fas fa-share-alt"></i>
-                            </button>
-                            <button class="action-btn" onclick="showDeleteModal('album6')">
-                                <i class="fas fa-trash"></i>
-                            </button>
-                        </div>
-                        <div class="album-header">
-                            <h3>Album 6</h3>
-                        </div>
-                        <div class="album-image-container">
-                            <img src="foto 6.png" class="album-image" alt="Album 6">
-                        </div>
-                        <button class="download-btn" onclick="downloadCard('album6')">
-                            <i class="fas fa-download"></i> Download Card
-                        </button>
-                    </div>
-                    
-                    <!-- Add Album Button -->
-                    <div class="album-card add-album-card" onclick="document.getElementById('imageUpload').click()">
-                        <div class="album-image-container">
-                            <i class="fas fa-plus-circle add-album-icon"></i>
-                            <div class="add-album-text">Tambah Album</div>
-                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
-    
-    <!-- Share Modal -->
-    <div class="modal" id="shareModal">
-        <div class="modal-content">
-            <span class="close-modal" onclick="closeModal()">&times;</span>
-            <h3>Bagikan Album</h3>
-            <p id="shareAlbumTitle">Album 1</p>
-            <div class="share-buttons">
-                <button class="share-btn share-whatsapp" onclick="shareViaWhatsApp()">
-                    <i class="fab fa-whatsapp"></i> WhatsApp
-                </button>
-                <button class="share-btn share-facebook" onclick="shareViaFacebook()">
-                    <i class="fab fa-facebook"></i> Facebook
-                </button>
-                <button class="share-btn share-twitter" onclick="shareViaTwitter()">
-                    <i class="fab fa-twitter"></i> Twitter
-                </button>
+                
+                <!-- Album 5 -->
+                <div class="album-card" id="album5">
+                    <div class="album-header">
+                        <h3>Album 5</h3>
+                    </div>
+                    <div class="album-image-container">
+                        <img src="foto 5.png" class="album-image" alt="Album 5">
+                    </div>
+                    <div class="album-actions">
+                        <button class="action-btn" onclick="downloadCard('album5')">
+                            <i class="fas fa-download"></i> Download
+                        </button>
+                        <button class="action-btn delete-btn" onclick="confirmDelete('album5')">
+                            <i class="fas fa-trash"></i> Hapus
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Album 6 -->
+                <div class="album-card" id="album6">
+                    <div class="album-header">
+                        <h3>Album 6</h3>
+                    </div>
+                    <div class="album-image-container">
+                        <img src="foto 6.png" class="album-image" alt="Album 6">
+                    </div>
+                    <div class="album-actions">
+                        <button class="action-btn" onclick="downloadCard('album6')">
+                            <i class="fas fa-download"></i> Download
+                        </button>
+                        <button class="action-btn delete-btn" onclick="confirmDelete('album6')">
+                            <i class="fas fa-trash"></i> Hapus
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
     
     <!-- Delete Confirmation Modal -->
-    <div class="delete-modal" id="deleteModal">
-        <div class="delete-modal-content">
-            <span class="close-modal" onclick="closeDeleteModal()">&times;</span>
-            <h3>Hapus Album</h3>
+    <div class="modal" id="deleteModal">
+        <div class="modal-content">
+            <h3>Konfirmasi Hapus Album</h3>
             <p>Apakah Anda yakin ingin menghapus album ini?</p>
-            <div class="delete-buttons">
-                <button class="delete-confirm-btn" onclick="confirmDelete()">Ya, Hapus</button>
-                <button class="delete-cancel-btn" onclick="closeDeleteModal()">Batal</button>
+            <div class="modal-actions">
+                <button class="action-btn" onclick="closeModal()">
+                    <i class="fas fa-times"></i> Batal
+                </button>
+                <button class="action-btn delete-btn" id="confirmDeleteBtn">
+                    <i class="fas fa-trash"></i> Ya, Hapus
+                </button>
             </div>
         </div>
     </div>
-    
-    <footer>
-        <div class="footer-content">
-            <p>&copy; 2025 Album Sholawat Azzahir. Dev: Muhammad Rian Akbar.</p>
-        </div>
-    </footer>
 
     <script>
-        // Current album being shared or deleted
-        let currentSharedAlbum = null;
-        let currentAlbumToDelete = null;
-        
-        // Show loading spinner
-        function showLoading() {
-            document.getElementById('loadingSpinner').style.display = 'block';
-        }
-        
-        // Hide loading spinner
-        function hideLoading() {
-            document.getElementById('loadingSpinner').style.display = 'none';
-        }
+        // Variable to store current album to delete
+        let albumToDelete = null;
         
         // Download card as image
         function downloadCard(cardId) {
-            showLoading();
             const element = document.getElementById(cardId);
             
-            const options = {
-                width: element.offsetWidth,
-                height: element.offsetHeight,
-                scale: 2,
-                backgroundColor: null,
-                logging: false,
-                useCORS: true,
-                allowTaint: true
-            };
-            
-            html2canvas(element, options).then(canvas => {
+            html2canvas(element).then(canvas => {
                 const link = document.createElement('a');
                 link.download = 'album-card-' + cardId + '.png';
                 link.href = canvas.toDataURL('image/png');
-                
-                document.body.appendChild(link);
                 link.click();
-                document.body.removeChild(link);
-                hideLoading();
             });
         }
         
-        // Toggle favorite status
-        function toggleFavorite(albumId) {
-            const album = document.getElementById(albumId);
-            const isFavorite = album.getAttribute('data-favorite') === 'true';
+        // Show delete confirmation modal
+        function confirmDelete(albumId) {
+            albumToDelete = albumId;
+            document.getElementById('deleteModal').style.display = 'flex';
             
-            album.setAttribute('data-favorite', !isFavorite);
-            const heartIcon = album.querySelector('.fa-heart');
-            
-            if (isFavorite) {
-                heartIcon.classList.remove('fas');
-                heartIcon.classList.add('far');
-            } else {
-                heartIcon.classList.remove('far');
-                heartIcon.classList.add('fas');
-            }
-            
-            // Save to localStorage
-            const favorites = JSON.parse(localStorage.getItem('albumFavorites')) || {};
-            favorites[albumId] = !isFavorite;
-            localStorage.setItem('albumFavorites', JSON.stringify(favorites));
-        }
-        
-        // Filter albums
-        function filterAlbums(filter) {
-            const albums = document.querySelectorAll('.album-card:not(.add-album-card)');
-            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
-            
-            albums.forEach(album => {
-                const title = album.getAttribute('data-title').toLowerCase();
-                const isFavorite = album.getAttribute('data-favorite') === 'true';
-                
-                let shouldShow = true;
-                
-                // Apply search filter
-                if (searchTerm && !title.includes(searchTerm)) {
-                    shouldShow = false;
-                }
-                
-                // Apply favorite filter
-                if (filter === 'favorite' && !isFavorite) {
-                    shouldShow = false;
-                }
-                
-                album.style.display = shouldShow ? 'flex' : 'none';
-            });
-            
-            // Update active filter button
-            document.querySelectorAll('.filter-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            event.target.classList.add('active');
-            
-            // Show no results message if needed
-            const visibleAlbums = document.querySelectorAll('.album-card:not(.add-album-card)[style*="flex"]').length;
-            let noResults = document.getElementById('noResults');
-            
-            if (visibleAlbums === 0) {
-                if (!noResults) {
-                    noResults = document.createElement('div');
-                    noResults.id = 'noResults';
-                    noResults.className = 'no-results';
-                    noResults.textContent = 'Tidak ada album yang ditemukan';
-                    document.getElementById('albumContainer').appendChild(noResults);
-                }
-            } else if (noResults) {
-                noResults.remove();
-            }
-        }
-        
-        // Share album
-        function shareAlbum(albumId) {
-            currentSharedAlbum = albumId;
-            const albumTitle = document.getElementById(albumId).getAttribute('data-title');
-            document.getElementById('shareAlbumTitle').textContent = albumTitle;
-            document.getElementById('shareModal').style.display = 'flex';
+            // Set up confirm button
+            const confirmBtn = document.getElementById('confirmDeleteBtn');
+            confirmBtn.onclick = function() {
+                deleteAlbum(albumToDelete);
+                closeModal();
+            };
         }
         
         // Close modal
         function closeModal() {
-            document.getElementById('shareModal').style.display = 'none';
-        }
-        
-        // Share via WhatsApp
-        function shareViaWhatsApp() {
-            const albumTitle = document.getElementById(currentSharedAlbum).getAttribute('data-title');
-            const shareUrl = window.location.href + '#' + currentSharedAlbum;
-            const text = `Lihat album ${albumTitle} di Azzahir: ${shareUrl}`;
-            window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
-        }
-        
-        // Share via Facebook
-        function shareViaFacebook() {
-            const shareUrl = window.location.href + '#' + currentSharedAlbum;
-            window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`, '_blank');
-        }
-        
-        // Share via Twitter
-        function shareViaTwitter() {
-            const albumTitle = document.getElementById(currentSharedAlbum).getAttribute('data-title');
-            const shareUrl = window.location.href + '#' + currentSharedAlbum;
-            const text = `Lihat album ${albumTitle} di Azzahir`;
-            window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(shareUrl)}`, '_blank');
-        }
-        
-        // Initialize favorites from localStorage
-        function initFavorites() {
-            const favorites = JSON.parse(localStorage.getItem('albumFavorites')) || {};
-            
-            for (const albumId in favorites) {
-                if (favorites[albumId]) {
-                    const album = document.getElementById(albumId);
-                    if (album) {
-                        album.setAttribute('data-favorite', 'true');
-                        const heartIcon = album.querySelector('.fa-heart');
-                        heartIcon.classList.remove('far');
-                        heartIcon.classList.add('fas');
-                    }
-                }
-            }
-        }
-        
-        // Search functionality
-        document.getElementById('searchInput').addEventListener('input', function() {
-            filterAlbums(document.querySelector('.filter-btn.active').textContent.toLowerCase());
-        });
-        
-        // Handle image upload and create new album
-        document.getElementById('imageUpload').addEventListener('change', function(e) {
-            const file = e.target.files[0];
-            if (!file) return;
-            
-            // Show upload progress
-            document.getElementById('uploadProgress').style.display = 'flex';
-            
-            // Create a new album card with the uploaded image
-            createAlbumCard(file);
-            
-            // Reset file input
-            e.target.value = '';
-        });
-        
-        // Create a new album card
-        function createAlbumCard(imageFile) {
-            const reader = new FileReader();
-            
-            reader.onload = function(e) {
-                const imageUrl = e.target.result;
-                const albumContainer = document.getElementById('albumContainer');
-                const addAlbumCard = document.querySelector('.add-album-card');
-                
-                // Create a unique ID for the new album
-                const albumId = 'album-' + Date.now();
-                const albumNumber = document.querySelectorAll('.album-card:not(.add-album-card)').length + 1;
-                
-                // Create the new album card HTML
-                const albumCard = document.createElement('div');
-                albumCard.className = 'album-card';
-                albumCard.id = albumId;
-                albumCard.setAttribute('data-title', `Album ${albumNumber}`);
-                albumCard.setAttribute('data-favorite', 'false');
-                albumCard.innerHTML = `
-                    <div class="album-actions">
-                        <button class="action-btn" onclick="toggleFavorite('${albumId}')">
-                            <i class="far fa-heart"></i>
-                        </button>
-                        <button class="action-btn" onclick="shareAlbum('${albumId}')">
-                            <i class="fas fa-share-alt"></i>
-                        </button>
-                        <button class="action-btn" onclick="showDeleteModal('${albumId}')">
-                            <i class="fas fa-trash"></i>
-                        </button>
-                    </div>
-                    <div class="album-header">
-                        <h3>Album ${albumNumber}</h3>
-                    </div>
-                    <div class="album-image-container">
-                        <img src="${imageUrl}" class="album-image" alt="Album ${albumNumber}">
-                    </div>
-                    <button class="download-btn" onclick="downloadCard('${albumId}')">
-                        <i class="fas fa-download"></i> Download Card
-                    </button>
-                `;
-                
-                // Insert the new card before the "Add Album" button
-                albumContainer.insertBefore(albumCard, addAlbumCard);
-                
-                // Hide upload progress
-                document.getElementById('uploadProgress').style.display = 'none';
-                
-                // Save to localStorage
-                saveAlbumToLocalStorage(albumId, imageUrl, `Album ${albumNumber}`);
-            };
-            
-            reader.readAsDataURL(imageFile);
-        }
-        
-        // Save album to localStorage
-        function saveAlbumToLocalStorage(albumId, imageUrl, title) {
-            const albums = JSON.parse(localStorage.getItem('userAlbums')) || {};
-            albums[albumId] = {
-                imageUrl: imageUrl,
-                title: title,
-                favorite: false
-            };
-            localStorage.setItem('userAlbums', JSON.stringify(albums));
-        }
-        
-        // Remove album from localStorage
-        function removeAlbumFromLocalStorage(albumId) {
-            const albums = JSON.parse(localStorage.getItem('userAlbums')) || {};
-            delete albums[albumId];
-            localStorage.setItem('userAlbums', JSON.stringify(albums));
-            
-            // Also remove from favorites if it was there
-            const favorites = JSON.parse(localStorage.getItem('albumFavorites')) || {};
-            delete favorites[albumId];
-            localStorage.setItem('albumFavorites', JSON.stringify(favorites));
-        }
-        
-        // Show delete confirmation modal
-        function showDeleteModal(albumId) {
-            currentAlbumToDelete = albumId;
-            document.getElementById('deleteModal').style.display = 'flex';
-        }
-        
-        // Close delete confirmation modal
-        function closeDeleteModal() {
             document.getElementById('deleteModal').style.display = 'none';
-            currentAlbumToDelete = null;
+            albumToDelete = null;
         }
         
-        // Confirm album deletion
-        function confirmDelete() {
-            if (currentAlbumToDelete) {
-                const album = document.getElementById(currentAlbumToDelete);
-                if (album) {
-                    album.remove();
-                    removeAlbumFromLocalStorage(currentAlbumToDelete);
-                }
-                closeDeleteModal();
+        // Delete album function
+        function deleteAlbum(albumId) {
+            const albumElement = document.getElementById(albumId);
+            if (albumElement) {
+                albumElement.remove();
+                // Here you can add code to remove from localStorage if needed
+                // removeFromLocalStorage(albumId);
             }
         }
-        
-        // Load user-added albums from localStorage
-        function loadUserAlbums() {
-            const albums = JSON.parse(localStorage.getItem('userAlbums')) || {};
-            const albumContainer = document.getElementById('albumContainer');
-            const addAlbumCard = document.querySelector('.add-album-card');
-            
-            for (const albumId in albums) {
-                const albumData = albums[albumId];
-                
-                // Skip if this is one of our default albums (1-6)
-                if (albumId.match(/^album[1-6]$/)) continue;
-                
-                const albumCard = document.createElement('div');
-                albumCard.className = 'album-card';
-                albumCard.id = albumId;
-                albumCard.setAttribute('data-title', albumData.title);
-                albumCard.setAttribute('data-favorite', albumData.favorite);
-                albumCard.innerHTML = `
-                    <div class="album-actions">
-                        <button class="action-btn" onclick="toggleFavorite('${albumId}')">
-                            <i class="${albumData.favorite ? 'fas' : 'far'} fa-heart"></i>
-                        </button>
-                        <button class="action-btn" onclick="shareAlbum('${albumId}')">
-                            <i class="fas fa-share-alt"></i>
-                        </button>
-                        <button class="action-btn" onclick="showDeleteModal('${albumId}')">
-                            <i class="fas fa-trash"></i>
-                        </button>
-                    </div>
-                    <div class="album-header">
-                        <h3>${albumData.title}</h3>
-                    </div>
-                    <div class="album-image-container">
-                        <img src="${albumData.imageUrl}" class="album-image" alt="${albumData.title}">
-                    </div>
-                    <button class="download-btn" onclick="downloadCard('${albumId}')">
-                        <i class="fas fa-download"></i> Download Card
-                    </button>
-                `;
-                
-                albumContainer.insertBefore(albumCard, addAlbumCard);
-            }
-        }
-        
-        // Initialize on page load
-        window.onload = function() {
-            initFavorites();
-            loadUserAlbums();
-            
-            // Check for hash in URL to scroll to specific album
-            if (window.location.hash) {
-                const album = document.getElementById(window.location.hash.substring(1));
-                if (album) {
-                    album.scrollIntoView({ behavior: 'smooth' });
-                    
-                    // Highlight the album temporarily
-                    album.style.boxShadow = '0 0 0 3px rgba(124, 58, 237, 0.5)';
-                    setTimeout(() => {
-                        album.style.boxShadow = '';
-                    }, 3000);
-                }
-            }
-        };
     </script>
 </body>
 </html>
